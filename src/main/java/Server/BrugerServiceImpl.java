@@ -4,34 +4,65 @@ package Server;
 import DAOs.BrugerImpl;
 import DAOs.Interfaces.BrugerDAO;
 import bruger.Bruger;
-import bruger.BrugerRequest;
-import bruger.UserGrpc;
+import bruger.HelloRequest;
+import bruger.HelloResponse;
+import bruger.HelloServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
-public class BrugerServiceImpl extends UserGrpc.UserImplBase {
+public class BrugerServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
 
     private BrugerImpl dao;
 
    public BrugerServiceImpl(){
        this.dao = new BrugerImpl();
    }
-
-    public void getUser(BrugerRequest request,
+    @Override
+    public void hello(HelloRequest request,
+                      StreamObserver<HelloResponse> responseObserver) {
+        String greeting = String.format("Hello, %s %s!",
+                request.getFirstName(),
+                request.getLastName());
+        HelloResponse response = HelloResponse.newBuilder()
+                .setGreeting(greeting)
+                .build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+/*
+   @Override
+   public void getUser(Bruger request,
                         StreamObserver<Bruger> responseObserver) {
       try{
-          String getUser = String.format("Hello, %s",
-                  request.getUsername());
+          String User = request.getUsername();
 
 
-                  Bruger response = Bruger.newBuilder()
-                          .getUsername(getUser)
-                          .build();
+                  Bruger response = Bruger.newBuilder().setUsername(User).build();
 
      responseObserver.onNext(response);
+     responseObserver.onCompleted();
       } catch (Exception e) {
           throw new RuntimeException(e);
       }
 
 
     }
+
+ */
+
+    /*@Override
+    public void createUser(Bruger bruger, StreamObserver<Bruger> responseObserver) {
+        try{
+
+
+            Bruger response = Bruger.newBuilder().setUsername("Jens").setPassword("Herskab69").setDepotID(1).setSaldo(69).build();
+
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+*/
+
 }
