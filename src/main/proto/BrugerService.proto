@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package bruger;
+
+
+message Bruger{
+  string username = 1;
+  string password = 2;
+  int32 depotID = 3;
+  double saldo = 4;
+
+}
+
+message BrugerRequest {
+  string Username = 1;
+
+}
+
+service User{
+  rpc createUser(Bruger) returns (Bruger);
+  rpc getUser(BrugerRequest) returns (Bruger);
+}
