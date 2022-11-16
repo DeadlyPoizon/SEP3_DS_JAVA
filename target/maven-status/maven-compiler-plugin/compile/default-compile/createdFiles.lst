@@ -1,0 +1,15 @@
+bruger\HelloRequest$Builder.class
+bruger\HelloServiceGrpc.class
+bruger\HelloServiceGrpc$HelloServiceStub.class
+bruger\HelloResponse$1.class
+bruger\HelloResponse.class
+bruger\HelloResponse$Builder.class
+bruger\HelloServiceGrpc$HelloServiceBlockingStub.class
+bruger\HelloRequest$1.class
+bruger\HelloServiceGrpc$HelloServiceFutureStub.class
+bruger\HelloServiceGrpc$HelloServiceImplBase.class
+bruger\HelloRequestOrBuilder.class
+bruger\HelloRequest.class
+bruger\HelloServiceGrpc$HelloServiceDescriptorSupplier.class
+bruger\HelloServiceGrpc$MethodHandlers.class
+bruger\HelloResponseOrBuilder.class

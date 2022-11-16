@@ -1,0 +1,11 @@
+db\DataMapper.class
+Server\BrugerServiceImpl.class
+DAOs\BrugerImpl$mapBruger.class
+DAOs\Interfaces\BrugerDAO.class
+Server\BrugerServer.class
+DTOs\Depot.class
+DTOs\Aktie.class
+DAOs\BrugerImpl.class
+DTOs\Transaktion.class
+db\DBHelper.class
+DTOs\Bruger.class
