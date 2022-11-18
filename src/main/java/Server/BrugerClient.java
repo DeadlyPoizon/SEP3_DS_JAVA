@@ -1,6 +1,6 @@
 package Server;
 
-import bruger.Bruger;
+import GRPC.bruger.Bruger;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 

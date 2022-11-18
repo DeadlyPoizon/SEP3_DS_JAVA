@@ -3,10 +3,10 @@ package Server;
 
 import DAOs.BrugerImpl;
 import DAOs.Interfaces.BrugerDAO;
-import bruger.Bruger;
-import bruger.HelloRequest;
-import bruger.HelloResponse;
-import bruger.HelloServiceGrpc;
+import GRPC.bruger.Bruger;
+import GRPC.bruger.HelloRequest;
+import GRPC.bruger.HelloResponse;
+import GRPC.bruger.HelloServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 public class BrugerServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
@@ -19,6 +19,8 @@ public class BrugerServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
     @Override
     public void hello(HelloRequest request,
                       StreamObserver<HelloResponse> responseObserver) {
+        System.out.println("yoooooooo");
+        System.out.println(request.getFirstName());
         String greeting = String.format("Hello, %s %s!",
                 request.getFirstName(),
                 request.getLastName());
