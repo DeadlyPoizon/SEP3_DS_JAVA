@@ -4,28 +4,26 @@ package Server;
 import DAOs.BrugerImpl;
 import DAOs.Interfaces.BrugerDAO;
 import GRPC.bruger.Bruger;
-import GRPC.bruger.HelloRequest;
-import GRPC.bruger.HelloResponse;
-import GRPC.bruger.HelloServiceGrpc;
+import GRPC.bruger.*;
+import db.DBHelper;
+import db.DataMapper;
 import io.grpc.stub.StreamObserver;
 
-public class BrugerServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
+public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
     private BrugerImpl dao;
+    private DBHelper dbHelper;
 
    public BrugerServiceImpl(){
        this.dao = new BrugerImpl();
    }
     @Override
-    public void hello(HelloRequest request,
-                      StreamObserver<HelloResponse> responseObserver) {
+    public void createBruger(Bruger request,
+                      StreamObserver<BrugerResponse> responseObserver) {
         System.out.println("yoooooooo");
-        System.out.println(request.getFirstName());
-        String greeting = String.format("Hello, %s %s!",
-                request.getFirstName(),
-                request.getLastName());
-        HelloResponse response = HelloResponse.newBuilder()
-                .setGreeting(greeting)
+        System.out.println(request.getUsername());
+        BrugerResponse response = BrugerResponse.newBuilder()
+                .setResponse(true)
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();

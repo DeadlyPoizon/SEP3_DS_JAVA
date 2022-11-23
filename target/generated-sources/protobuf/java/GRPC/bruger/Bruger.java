@@ -81,12 +81,12 @@ public  final class Bruger extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GRPC.bruger.BrugerService.internal_static_GRPC_bruger_Bruger_descriptor;
+    return GRPC.bruger.BrugerServiceOuterClass.internal_static_GRPC_bruger_Bruger_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GRPC.bruger.BrugerService.internal_static_GRPC_bruger_Bruger_fieldAccessorTable
+    return GRPC.bruger.BrugerServiceOuterClass.internal_static_GRPC_bruger_Bruger_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             GRPC.bruger.Bruger.class, GRPC.bruger.Bruger.Builder.class);
   }
@@ -369,12 +369,12 @@ public  final class Bruger extends
       GRPC.bruger.BrugerOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GRPC.bruger.BrugerService.internal_static_GRPC_bruger_Bruger_descriptor;
+      return GRPC.bruger.BrugerServiceOuterClass.internal_static_GRPC_bruger_Bruger_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GRPC.bruger.BrugerService.internal_static_GRPC_bruger_Bruger_fieldAccessorTable
+      return GRPC.bruger.BrugerServiceOuterClass.internal_static_GRPC_bruger_Bruger_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               GRPC.bruger.Bruger.class, GRPC.bruger.Bruger.Builder.class);
     }
@@ -409,7 +409,7 @@ public  final class Bruger extends
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GRPC.bruger.BrugerService.internal_static_GRPC_bruger_Bruger_descriptor;
+      return GRPC.bruger.BrugerServiceOuterClass.internal_static_GRPC_bruger_Bruger_descriptor;
     }
 
     public GRPC.bruger.Bruger getDefaultInstanceForType() {
