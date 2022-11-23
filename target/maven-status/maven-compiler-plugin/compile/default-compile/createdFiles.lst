@@ -1,6 +1,8 @@
 DAOs\Interfaces\BrugerDAO.class
 GRPC\bruger\BrugerResponseOrBuilder.class
 DTOs\Transaktion.class
+DAOs\Interfaces\AktieDAO.class
+DAOs\AktieImpl.class
 GRPC\bruger\BrugerRequest.class
 GRPC\bruger\BrugerRequest$Builder.class
 GRPC\bruger\BrugerOrBuilder.class
@@ -10,6 +12,7 @@ GRPC\bruger\BrugerServiceGrpc$MethodHandlers.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceFutureStub.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceStub.class
 GRPC\bruger\Bruger$1.class
+DAOs\AktieImpl$mapAktie.class
 DAOs\BrugerImpl.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceBlockingStub.class
 db\DBHelper.class
