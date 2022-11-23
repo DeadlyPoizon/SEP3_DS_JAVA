@@ -12,24 +12,45 @@ import io.grpc.stub.StreamObserver;
 public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
     private BrugerImpl dao;
-    private DBHelper dbHelper;
-
    public BrugerServiceImpl(){
        this.dao = new BrugerImpl();
    }
     @Override
     public void createBruger(Bruger request,
                       StreamObserver<BrugerResponse> responseObserver) {
+       boolean responsebool;
         System.out.println("yoooooooo");
         System.out.println(request.getUsername());
+        if(dao.create(request.getUsername(), request.getPassword(), request.getDepotID(), request.getSaldo())){
+            System.out.println("Created");
+            responsebool = true;
+        }
+        else {
+            responsebool = false;
+        }
         BrugerResponse response = BrugerResponse.newBuilder()
-                .setResponse(true)
+                .setResponse(responsebool)
                 .build();
+
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-/*
+
    @Override
+    public void getBruger(BrugerRequest brugerRequest, StreamObserver<Bruger> streamObserver){
+       DTOs.Bruger bruger = dao.getUser(brugerRequest.getUsername());
+       System.out.println(bruger.getUsername());
+       Bruger bruger1 = Bruger.newBuilder().
+               setUsername(bruger.getUsername()).
+               setPassword(bruger.getPassword()).
+               setDepotID(bruger.getDepotId()).
+               setSaldo(bruger.getSaldo())
+               .build();
+       streamObserver.onNext(bruger1);
+       streamObserver.onCompleted();
+   }
+
+  /* @Override
    public void getUser(Bruger request,
                         StreamObserver<Bruger> responseObserver) {
       try{

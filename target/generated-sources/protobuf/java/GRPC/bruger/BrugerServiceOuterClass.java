@@ -24,6 +24,11 @@ public final class BrugerServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GRPC_bruger_BrugerResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_BrugerRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_BrugerRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -36,10 +41,12 @@ public final class BrugerServiceOuterClass {
       "\n\023BrugerService.proto\022\013GRPC.bruger\"L\n\006Br" +
       "uger\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
       "\022\017\n\007depotID\030\003 \001(\005\022\r\n\005saldo\030\004 \001(\001\"\"\n\016Brug" +
-      "erResponse\022\020\n\010response\030\001 \001(\0102Q\n\rBrugerSe" +
-      "rvice\022@\n\014createBruger\022\023.GRPC.bruger.Brug" +
-      "er\032\033.GRPC.bruger.BrugerResponseB\002P\001b\006pro" +
-      "to3"
+      "erResponse\022\020\n\010response\030\001 \001(\010\"!\n\rBrugerRe" +
+      "quest\022\020\n\010username\030\001 \001(\t2\217\001\n\rBrugerServic" +
+      "e\022@\n\014createBruger\022\023.GRPC.bruger.Bruger\032\033" +
+      ".GRPC.bruger.BrugerResponse\022<\n\tgetBruger" +
+      "\022\032.GRPC.bruger.BrugerRequest\032\023.GRPC.brug" +
+      "er.BrugerB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -65,6 +72,12 @@ public final class BrugerServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GRPC_bruger_BrugerResponse_descriptor,
         new java.lang.String[] { "Response", });
+    internal_static_GRPC_bruger_BrugerRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_GRPC_bruger_BrugerRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_BrugerRequest_descriptor,
+        new java.lang.String[] { "Username", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

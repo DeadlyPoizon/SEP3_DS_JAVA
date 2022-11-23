@@ -12,7 +12,7 @@ public class BrugerImpl implements BrugerDAO {
 
     private final DBHelper<Bruger> db;
 
-    private final static String JDBC_URL = "jdbc:postgres://wtwmsyke:rV40CIlTHBJQ2PnZ4NTiILx1gb1M5tp4@surus.db.elephantsql.com/wtwmsyke";
+    private final static String JDBC_URL = "jdbc:postgresql://surus.db.elephantsql.com:5432/wtwmsyke?currentSchema=sydnet";
 
     private final static String USERNAME = "wtwmsyke";
 
@@ -33,10 +33,11 @@ public class BrugerImpl implements BrugerDAO {
         return bruger;
     }
     @Override
-    public Bruger create(String username, String password, int depotID, double saldo) {
-        db.executeUpdate("INSERT INTO bruger VALUES (?, ?, ?, ?)", username, password,depotID,saldo);
-        return createBrugerDTO(username,password,depotID,saldo);
+    public boolean create(String username, String password, int depotID, double saldo) {
+            db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, ?, ?)", username, password, depotID, saldo);
+        return true;
     }
+
 
     private static class mapBruger implements DataMapper<Bruger> {
         public Bruger create(ResultSet rs) throws SQLException {
@@ -51,6 +52,6 @@ public class BrugerImpl implements BrugerDAO {
 
     @Override
     public Bruger getUser(String username) {
-        return db.mapSingle(new mapBruger(), "SELECT * FROM bruger WHERE username = ?", username);
+        return db.mapSingle(new mapBruger(), "SELECT * FROM sydnet.bruger WHERE username = ?", username);
     }
 }

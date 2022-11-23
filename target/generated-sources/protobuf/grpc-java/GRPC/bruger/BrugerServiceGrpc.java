@@ -39,6 +39,18 @@ public final class BrugerServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               GRPC.bruger.BrugerResponse.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<GRPC.bruger.BrugerRequest,
+      GRPC.bruger.Bruger> METHOD_GET_BRUGER =
+      io.grpc.MethodDescriptor.<GRPC.bruger.BrugerRequest, GRPC.bruger.Bruger>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "GRPC.bruger.BrugerService", "getBruger"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.BrugerRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.Bruger.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -74,6 +86,13 @@ public final class BrugerServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_CREATE_BRUGER, responseObserver);
     }
 
+    /**
+     */
+    public void getBruger(GRPC.bruger.BrugerRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.Bruger> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_BRUGER, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -83,6 +102,13 @@ public final class BrugerServiceGrpc {
                 GRPC.bruger.Bruger,
                 GRPC.bruger.BrugerResponse>(
                   this, METHODID_CREATE_BRUGER)))
+          .addMethod(
+            METHOD_GET_BRUGER,
+            asyncUnaryCall(
+              new MethodHandlers<
+                GRPC.bruger.BrugerRequest,
+                GRPC.bruger.Bruger>(
+                  this, METHODID_GET_BRUGER)))
           .build();
     }
   }
@@ -112,6 +138,14 @@ public final class BrugerServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_CREATE_BRUGER, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getBruger(GRPC.bruger.BrugerRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.Bruger> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_BRUGER, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -137,6 +171,13 @@ public final class BrugerServiceGrpc {
     public GRPC.bruger.BrugerResponse createBruger(GRPC.bruger.Bruger request) {
       return blockingUnaryCall(
           getChannel(), METHOD_CREATE_BRUGER, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GRPC.bruger.Bruger getBruger(GRPC.bruger.BrugerRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_BRUGER, getCallOptions(), request);
     }
   }
 
@@ -165,9 +206,18 @@ public final class BrugerServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_CREATE_BRUGER, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GRPC.bruger.Bruger> getBruger(
+        GRPC.bruger.BrugerRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_BRUGER, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_BRUGER = 0;
+  private static final int METHODID_GET_BRUGER = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -189,6 +239,10 @@ public final class BrugerServiceGrpc {
         case METHODID_CREATE_BRUGER:
           serviceImpl.createBruger((GRPC.bruger.Bruger) request,
               (io.grpc.stub.StreamObserver<GRPC.bruger.BrugerResponse>) responseObserver);
+          break;
+        case METHODID_GET_BRUGER:
+          serviceImpl.getBruger((GRPC.bruger.BrugerRequest) request,
+              (io.grpc.stub.StreamObserver<GRPC.bruger.Bruger>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -224,6 +278,7 @@ public final class BrugerServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new BrugerServiceDescriptorSupplier())
               .addMethod(METHOD_CREATE_BRUGER)
+              .addMethod(METHOD_GET_BRUGER)
               .build();
         }
       }
