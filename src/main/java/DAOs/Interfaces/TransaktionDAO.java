@@ -14,4 +14,6 @@ List<Transaktion> getUserTransaktioner(String username);
 List<Transaktion> getAktieTransaktioner(String aktie);
 
 List<Transaktion> getDateTransaktioner(Date date);
+
+boolean createTransaktion(int transaktionsID, String username, String aktieNavn, int antal, java.sql.Date date);
 }

@@ -67,11 +67,11 @@ public class DBHelper<T> {
         try (Connection connection = getConnection()) {
             PreparedStatement stat = prepare(connection, sql, parameters);
             ResultSet rs = stat.executeQuery();
-            LinkedList<T> allAnimals = new LinkedList<>();
+            LinkedList<T> all = new LinkedList<>();
             while(rs.next()) {
-                allAnimals.add(mapper.create(rs));
+                all.add(mapper.create(rs));
             }
-            return allAnimals;
+            return all;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
