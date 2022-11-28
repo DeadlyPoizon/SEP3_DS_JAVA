@@ -50,6 +50,12 @@ public class DepotImpl implements DepotDAO {
 
     @Override
     public Depot getDepot(int depotID) {
-        return null;
+        return db.mapSingle(new mapDepot(), "SELECT * FROM sydnet.depot WHERE ID = ?", depotID);
+    }
+
+    @Override
+    public boolean createDepotEntry(int id, String aktieNavn, int antal) {
+        db.executeUpdate("INSERT INTO sydnet.depot VALUES (?, ?, ?)", id, aktieNavn, antal);
+        return true;
     }
 }
