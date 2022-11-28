@@ -8,12 +8,36 @@ public interface BrugerRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
    */
-  java.lang.String getUsername();
+  java.util.List<GRPC.bruger.Bruger> 
+      getBrugerList();
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  GRPC.bruger.Bruger getBruger(int index);
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  int getBrugerCount();
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  java.util.List<? extends GRPC.bruger.BrugerOrBuilder> 
+      getBrugerOrBuilderList();
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  GRPC.bruger.BrugerOrBuilder getBrugerOrBuilder(
+      int index);
+
+  /**
+   * <code>string param = 2;</code>
+   */
+  java.lang.String getParam();
+  /**
+   * <code>string param = 2;</code>
    */
   com.google.protobuf.ByteString
-      getUsernameBytes();
+      getParamBytes();
 }

@@ -7,7 +7,7 @@ public class BrugerServer {
     public static void main(String[] args) throws Exception {
 
             Server server = ServerBuilder
-                    .forPort(6969)
+                    .forPort(1337)
                     .addService(new BrugerServiceImpl())
                     .build();
             server.start();

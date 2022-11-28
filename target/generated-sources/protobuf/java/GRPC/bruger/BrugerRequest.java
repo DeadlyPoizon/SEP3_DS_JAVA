@@ -15,7 +15,8 @@ public  final class BrugerRequest extends
     super(builder);
   }
   private BrugerRequest() {
-    username_ = "";
+    bruger_ = java.util.Collections.emptyList();
+    param_ = "";
   }
 
   @java.lang.Override
@@ -44,9 +45,18 @@ public  final class BrugerRequest extends
             break;
           }
           case 10: {
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              bruger_ = new java.util.ArrayList<GRPC.bruger.Bruger>();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            bruger_.add(
+                input.readMessage(GRPC.bruger.Bruger.parser(), extensionRegistry));
+            break;
+          }
+          case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            username_ = s;
+            param_ = s;
             break;
           }
         }
@@ -57,6 +67,9 @@ public  final class BrugerRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        bruger_ = java.util.Collections.unmodifiableList(bruger_);
+      }
       makeExtensionsImmutable();
     }
   }
@@ -72,34 +85,70 @@ public  final class BrugerRequest extends
             GRPC.bruger.BrugerRequest.class, GRPC.bruger.BrugerRequest.Builder.class);
   }
 
-  public static final int USERNAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object username_;
+  private int bitField0_;
+  public static final int BRUGER_FIELD_NUMBER = 1;
+  private java.util.List<GRPC.bruger.Bruger> bruger_;
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
    */
-  public java.lang.String getUsername() {
-    java.lang.Object ref = username_;
+  public java.util.List<GRPC.bruger.Bruger> getBrugerList() {
+    return bruger_;
+  }
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  public java.util.List<? extends GRPC.bruger.BrugerOrBuilder> 
+      getBrugerOrBuilderList() {
+    return bruger_;
+  }
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  public int getBrugerCount() {
+    return bruger_.size();
+  }
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  public GRPC.bruger.Bruger getBruger(int index) {
+    return bruger_.get(index);
+  }
+  /**
+   * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+   */
+  public GRPC.bruger.BrugerOrBuilder getBrugerOrBuilder(
+      int index) {
+    return bruger_.get(index);
+  }
+
+  public static final int PARAM_FIELD_NUMBER = 2;
+  private volatile java.lang.Object param_;
+  /**
+   * <code>string param = 2;</code>
+   */
+  public java.lang.String getParam() {
+    java.lang.Object ref = param_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      username_ = s;
+      param_ = s;
       return s;
     }
   }
   /**
-   * <code>string username = 1;</code>
+   * <code>string param = 2;</code>
    */
   public com.google.protobuf.ByteString
-      getUsernameBytes() {
-    java.lang.Object ref = username_;
+      getParamBytes() {
+    java.lang.Object ref = param_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      username_ = b;
+      param_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -118,8 +167,11 @@ public  final class BrugerRequest extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getUsernameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+    for (int i = 0; i < bruger_.size(); i++) {
+      output.writeMessage(1, bruger_.get(i));
+    }
+    if (!getParamBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, param_);
     }
   }
 
@@ -128,8 +180,12 @@ public  final class BrugerRequest extends
     if (size != -1) return size;
 
     size = 0;
-    if (!getUsernameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+    for (int i = 0; i < bruger_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, bruger_.get(i));
+    }
+    if (!getParamBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, param_);
     }
     memoizedSize = size;
     return size;
@@ -147,8 +203,10 @@ public  final class BrugerRequest extends
     GRPC.bruger.BrugerRequest other = (GRPC.bruger.BrugerRequest) obj;
 
     boolean result = true;
-    result = result && getUsername()
-        .equals(other.getUsername());
+    result = result && getBrugerList()
+        .equals(other.getBrugerList());
+    result = result && getParam()
+        .equals(other.getParam());
     return result;
   }
 
@@ -159,8 +217,12 @@ public  final class BrugerRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getUsername().hashCode();
+    if (getBrugerCount() > 0) {
+      hash = (37 * hash) + BRUGER_FIELD_NUMBER;
+      hash = (53 * hash) + getBrugerList().hashCode();
+    }
+    hash = (37 * hash) + PARAM_FIELD_NUMBER;
+    hash = (53 * hash) + getParam().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -286,11 +348,18 @@ public  final class BrugerRequest extends
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getBrugerFieldBuilder();
       }
     }
     public Builder clear() {
       super.clear();
-      username_ = "";
+      if (brugerBuilder_ == null) {
+        bruger_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+      } else {
+        brugerBuilder_.clear();
+      }
+      param_ = "";
 
       return this;
     }
@@ -314,7 +383,19 @@ public  final class BrugerRequest extends
 
     public GRPC.bruger.BrugerRequest buildPartial() {
       GRPC.bruger.BrugerRequest result = new GRPC.bruger.BrugerRequest(this);
-      result.username_ = username_;
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      if (brugerBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          bruger_ = java.util.Collections.unmodifiableList(bruger_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.bruger_ = bruger_;
+      } else {
+        result.bruger_ = brugerBuilder_.build();
+      }
+      result.param_ = param_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -356,8 +437,34 @@ public  final class BrugerRequest extends
 
     public Builder mergeFrom(GRPC.bruger.BrugerRequest other) {
       if (other == GRPC.bruger.BrugerRequest.getDefaultInstance()) return this;
-      if (!other.getUsername().isEmpty()) {
-        username_ = other.username_;
+      if (brugerBuilder_ == null) {
+        if (!other.bruger_.isEmpty()) {
+          if (bruger_.isEmpty()) {
+            bruger_ = other.bruger_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureBrugerIsMutable();
+            bruger_.addAll(other.bruger_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.bruger_.isEmpty()) {
+          if (brugerBuilder_.isEmpty()) {
+            brugerBuilder_.dispose();
+            brugerBuilder_ = null;
+            bruger_ = other.bruger_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            brugerBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getBrugerFieldBuilder() : null;
+          } else {
+            brugerBuilder_.addAllMessages(other.bruger_);
+          }
+        }
+      }
+      if (!other.getParam().isEmpty()) {
+        param_ = other.param_;
         onChanged();
       }
       onChanged();
@@ -385,72 +492,313 @@ public  final class BrugerRequest extends
       }
       return this;
     }
+    private int bitField0_;
 
-    private java.lang.Object username_ = "";
+    private java.util.List<GRPC.bruger.Bruger> bruger_ =
+      java.util.Collections.emptyList();
+    private void ensureBrugerIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        bruger_ = new java.util.ArrayList<GRPC.bruger.Bruger>(bruger_);
+        bitField0_ |= 0x00000001;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        GRPC.bruger.Bruger, GRPC.bruger.Bruger.Builder, GRPC.bruger.BrugerOrBuilder> brugerBuilder_;
+
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
      */
-    public java.lang.String getUsername() {
-      java.lang.Object ref = username_;
+    public java.util.List<GRPC.bruger.Bruger> getBrugerList() {
+      if (brugerBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(bruger_);
+      } else {
+        return brugerBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public int getBrugerCount() {
+      if (brugerBuilder_ == null) {
+        return bruger_.size();
+      } else {
+        return brugerBuilder_.getCount();
+      }
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public GRPC.bruger.Bruger getBruger(int index) {
+      if (brugerBuilder_ == null) {
+        return bruger_.get(index);
+      } else {
+        return brugerBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder setBruger(
+        int index, GRPC.bruger.Bruger value) {
+      if (brugerBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBrugerIsMutable();
+        bruger_.set(index, value);
+        onChanged();
+      } else {
+        brugerBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder setBruger(
+        int index, GRPC.bruger.Bruger.Builder builderForValue) {
+      if (brugerBuilder_ == null) {
+        ensureBrugerIsMutable();
+        bruger_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        brugerBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder addBruger(GRPC.bruger.Bruger value) {
+      if (brugerBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBrugerIsMutable();
+        bruger_.add(value);
+        onChanged();
+      } else {
+        brugerBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder addBruger(
+        int index, GRPC.bruger.Bruger value) {
+      if (brugerBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBrugerIsMutable();
+        bruger_.add(index, value);
+        onChanged();
+      } else {
+        brugerBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder addBruger(
+        GRPC.bruger.Bruger.Builder builderForValue) {
+      if (brugerBuilder_ == null) {
+        ensureBrugerIsMutable();
+        bruger_.add(builderForValue.build());
+        onChanged();
+      } else {
+        brugerBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder addBruger(
+        int index, GRPC.bruger.Bruger.Builder builderForValue) {
+      if (brugerBuilder_ == null) {
+        ensureBrugerIsMutable();
+        bruger_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        brugerBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder addAllBruger(
+        java.lang.Iterable<? extends GRPC.bruger.Bruger> values) {
+      if (brugerBuilder_ == null) {
+        ensureBrugerIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, bruger_);
+        onChanged();
+      } else {
+        brugerBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder clearBruger() {
+      if (brugerBuilder_ == null) {
+        bruger_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+      } else {
+        brugerBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public Builder removeBruger(int index) {
+      if (brugerBuilder_ == null) {
+        ensureBrugerIsMutable();
+        bruger_.remove(index);
+        onChanged();
+      } else {
+        brugerBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public GRPC.bruger.Bruger.Builder getBrugerBuilder(
+        int index) {
+      return getBrugerFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public GRPC.bruger.BrugerOrBuilder getBrugerOrBuilder(
+        int index) {
+      if (brugerBuilder_ == null) {
+        return bruger_.get(index);  } else {
+        return brugerBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public java.util.List<? extends GRPC.bruger.BrugerOrBuilder> 
+         getBrugerOrBuilderList() {
+      if (brugerBuilder_ != null) {
+        return brugerBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(bruger_);
+      }
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public GRPC.bruger.Bruger.Builder addBrugerBuilder() {
+      return getBrugerFieldBuilder().addBuilder(
+          GRPC.bruger.Bruger.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public GRPC.bruger.Bruger.Builder addBrugerBuilder(
+        int index) {
+      return getBrugerFieldBuilder().addBuilder(
+          index, GRPC.bruger.Bruger.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .GRPC.bruger.Bruger bruger = 1;</code>
+     */
+    public java.util.List<GRPC.bruger.Bruger.Builder> 
+         getBrugerBuilderList() {
+      return getBrugerFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        GRPC.bruger.Bruger, GRPC.bruger.Bruger.Builder, GRPC.bruger.BrugerOrBuilder> 
+        getBrugerFieldBuilder() {
+      if (brugerBuilder_ == null) {
+        brugerBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            GRPC.bruger.Bruger, GRPC.bruger.Bruger.Builder, GRPC.bruger.BrugerOrBuilder>(
+                bruger_,
+                ((bitField0_ & 0x00000001) == 0x00000001),
+                getParentForChildren(),
+                isClean());
+        bruger_ = null;
+      }
+      return brugerBuilder_;
+    }
+
+    private java.lang.Object param_ = "";
+    /**
+     * <code>string param = 2;</code>
+     */
+    public java.lang.String getParam() {
+      java.lang.Object ref = param_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        username_ = s;
+        param_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>string param = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      java.lang.Object ref = username_;
+        getParamBytes() {
+      java.lang.Object ref = param_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        username_ = b;
+        param_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>string param = 2;</code>
      */
-    public Builder setUsername(
+    public Builder setParam(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      username_ = value;
+      param_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>string param = 2;</code>
      */
-    public Builder clearUsername() {
+    public Builder clearParam() {
       
-      username_ = getDefaultInstance().getUsername();
+      param_ = getDefaultInstance().getParam();
       onChanged();
       return this;
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>string param = 2;</code>
      */
-    public Builder setUsernameBytes(
+    public Builder setParamBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      username_ = value;
+      param_ = value;
       onChanged();
       return this;
     }

@@ -38,8 +38,9 @@ public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
    @Override
     public void getBruger(BrugerRequest brugerRequest, StreamObserver<Bruger> streamObserver){
-       DTOs.Bruger bruger = dao.getUser(brugerRequest.getUsername());
+       DTOs.Bruger bruger = dao.getUser(brugerRequest.getBruger(0).getUsername());
        System.out.println(bruger.getUsername());
+       System.out.println(brugerRequest.getParam());
        Bruger bruger1 = Bruger.newBuilder().
                setUsername(bruger.getUsername()).
                setPassword(bruger.getPassword()).

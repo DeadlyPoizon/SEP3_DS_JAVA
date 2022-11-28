@@ -51,6 +51,30 @@ public final class BrugerServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               GRPC.bruger.Bruger.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<GRPC.bruger.AktieRequest,
+      GRPC.bruger.AktieResponse> METHOD_HANDLE_AKTIE =
+      io.grpc.MethodDescriptor.<GRPC.bruger.AktieRequest, GRPC.bruger.AktieResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "GRPC.bruger.BrugerService", "handleAktie"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.AktieRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.AktieResponse.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<GRPC.bruger.BrugerRequest,
+      GRPC.bruger.BrugerResponse> METHOD_LOGIN_BRUGER =
+      io.grpc.MethodDescriptor.<GRPC.bruger.BrugerRequest, GRPC.bruger.BrugerResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "GRPC.bruger.BrugerService", "loginBruger"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.BrugerRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.BrugerResponse.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -93,6 +117,20 @@ public final class BrugerServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_GET_BRUGER, responseObserver);
     }
 
+    /**
+     */
+    public void handleAktie(GRPC.bruger.AktieRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.AktieResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_HANDLE_AKTIE, responseObserver);
+    }
+
+    /**
+     */
+    public void loginBruger(GRPC.bruger.BrugerRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.BrugerResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LOGIN_BRUGER, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -109,6 +147,20 @@ public final class BrugerServiceGrpc {
                 GRPC.bruger.BrugerRequest,
                 GRPC.bruger.Bruger>(
                   this, METHODID_GET_BRUGER)))
+          .addMethod(
+            METHOD_HANDLE_AKTIE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                GRPC.bruger.AktieRequest,
+                GRPC.bruger.AktieResponse>(
+                  this, METHODID_HANDLE_AKTIE)))
+          .addMethod(
+            METHOD_LOGIN_BRUGER,
+            asyncUnaryCall(
+              new MethodHandlers<
+                GRPC.bruger.BrugerRequest,
+                GRPC.bruger.BrugerResponse>(
+                  this, METHODID_LOGIN_BRUGER)))
           .build();
     }
   }
@@ -146,6 +198,22 @@ public final class BrugerServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_BRUGER, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void handleAktie(GRPC.bruger.AktieRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.AktieResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_HANDLE_AKTIE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void loginBruger(GRPC.bruger.BrugerRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.BrugerResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LOGIN_BRUGER, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -178,6 +246,20 @@ public final class BrugerServiceGrpc {
     public GRPC.bruger.Bruger getBruger(GRPC.bruger.BrugerRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_GET_BRUGER, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GRPC.bruger.AktieResponse handleAktie(GRPC.bruger.AktieRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_HANDLE_AKTIE, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GRPC.bruger.BrugerResponse loginBruger(GRPC.bruger.BrugerRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LOGIN_BRUGER, getCallOptions(), request);
     }
   }
 
@@ -214,10 +296,28 @@ public final class BrugerServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_GET_BRUGER, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GRPC.bruger.AktieResponse> handleAktie(
+        GRPC.bruger.AktieRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_HANDLE_AKTIE, getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GRPC.bruger.BrugerResponse> loginBruger(
+        GRPC.bruger.BrugerRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LOGIN_BRUGER, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_BRUGER = 0;
   private static final int METHODID_GET_BRUGER = 1;
+  private static final int METHODID_HANDLE_AKTIE = 2;
+  private static final int METHODID_LOGIN_BRUGER = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -243,6 +343,14 @@ public final class BrugerServiceGrpc {
         case METHODID_GET_BRUGER:
           serviceImpl.getBruger((GRPC.bruger.BrugerRequest) request,
               (io.grpc.stub.StreamObserver<GRPC.bruger.Bruger>) responseObserver);
+          break;
+        case METHODID_HANDLE_AKTIE:
+          serviceImpl.handleAktie((GRPC.bruger.AktieRequest) request,
+              (io.grpc.stub.StreamObserver<GRPC.bruger.AktieResponse>) responseObserver);
+          break;
+        case METHODID_LOGIN_BRUGER:
+          serviceImpl.loginBruger((GRPC.bruger.BrugerRequest) request,
+              (io.grpc.stub.StreamObserver<GRPC.bruger.BrugerResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -279,6 +387,8 @@ public final class BrugerServiceGrpc {
               .setSchemaDescriptor(new BrugerServiceDescriptorSupplier())
               .addMethod(METHOD_CREATE_BRUGER)
               .addMethod(METHOD_GET_BRUGER)
+              .addMethod(METHOD_HANDLE_AKTIE)
+              .addMethod(METHOD_LOGIN_BRUGER)
               .build();
         }
       }

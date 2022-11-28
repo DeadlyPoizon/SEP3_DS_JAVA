@@ -1,4 +1,5 @@
 GRPC\bruger\BrugerResponseOrBuilder.class
+GRPC\bruger\Aktie$Builder.class
 DTOs\Transaktion.class
 DAOs\AktieImpl.class
 GRPC\bruger\BrugerRequest$Builder.class
@@ -7,6 +8,8 @@ GRPC\bruger\BrugerOrBuilder.class
 GRPC\bruger\BrugerServiceGrpc.class
 GRPC\bruger\Bruger.class
 DAOs\Interfaces\TransaktionDAO.class
+GRPC\bruger\AktieRequest.class
+GRPC\bruger\Aktie$1.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceStub.class
 DAOs\TransaktionImpl$mapTransaktion.class
 DAOs\DepotImpl$mapDepot.class
@@ -14,6 +17,8 @@ GRPC\bruger\BrugerServiceGrpc$BrugerServiceBlockingStub.class
 db\DBHelper.class
 GRPC\bruger\BrugerResponse$Builder.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceDescriptorSupplier.class
+GRPC\bruger\AktieResponse$1.class
+GRPC\bruger\AktieResponse$Builder.class
 GRPC\bruger\BrugerRequest$1.class
 db\DataMapper.class
 Server\BrugerServiceImpl.class
@@ -22,6 +27,9 @@ Server\BrugerServer.class
 GRPC\bruger\BrugerRequestOrBuilder.class
 DTOs\Aktie.class
 DAOs\Interfaces\BrugerDAO.class
+GRPC\bruger\AktieResponse.class
+GRPC\bruger\AktieRequestOrBuilder.class
+GRPC\bruger\AktieResponseOrBuilder.class
 DAOs\Interfaces\AktieDAO.class
 DAOs\TransaktionImpl.class
 GRPC\bruger\BrugerRequest.class
@@ -32,11 +40,15 @@ DAOs\DepotImpl.class
 DAOs\AktieImpl$mapAktie.class
 DAOs\BrugerImpl.class
 DTOs\Bruger.class
+GRPC\bruger\AktieOrBuilder.class
 GRPC\bruger\Bruger$Builder.class
 GRPC\bruger\BrugerResponse.class
 DTOs\Depot.class
+GRPC\bruger\AktieRequest$Builder.class
 GRPC\bruger\BrugerServiceOuterClass.class
+GRPC\bruger\Aktie.class
 GRPC\bruger\BrugerServiceOuterClass$1.class
 Server\BrugerClient.class
+GRPC\bruger\AktieRequest$1.class
 GRPC\bruger\BrugerServiceGrpc$BrugerServiceImplBase.class
 GRPC\bruger\BrugerResponse$1.class
