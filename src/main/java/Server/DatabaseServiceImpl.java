@@ -1,19 +1,18 @@
 package Server;
 
 
+import DAOs.AktieImpl;
 import DAOs.BrugerImpl;
-import DAOs.Interfaces.BrugerDAO;
 import GRPC.bruger.Bruger;
 import GRPC.bruger.*;
-import db.DBHelper;
-import db.DataMapper;
 import io.grpc.stub.StreamObserver;
 
-public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
+public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
-    private BrugerImpl dao;
-   public BrugerServiceImpl(){
-       this.dao = new BrugerImpl();
+    private BrugerImpl brugerDAO;
+    private AktieImpl aktieDAO;
+   public DatabaseServiceImpl(){
+       this.brugerDAO = new BrugerImpl();
    }
     @Override
     public void createBruger(Bruger request,
@@ -21,7 +20,7 @@ public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
        boolean responsebool;
         System.out.println("yoooooooo");
         System.out.println(request.getUsername());
-        if(dao.create(request.getUsername(), request.getPassword(), request.getDepotID(), request.getSaldo())){
+        if(brugerDAO.create(request.getUsername(), request.getPassword(), request.getDepotID(), request.getSaldo())){
             System.out.println("Created");
             responsebool = true;
         }
@@ -38,7 +37,7 @@ public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
    @Override
     public void getBruger(BrugerRequest brugerRequest, StreamObserver<Bruger> streamObserver){
-       DTOs.Bruger bruger = dao.getUser(brugerRequest.getBruger(0).getUsername());
+       DTOs.Bruger bruger = brugerDAO.getUser(brugerRequest.getBruger(0).getUsername());
        System.out.println(bruger.getUsername());
        System.out.println(brugerRequest.getParam());
        Bruger bruger1 = Bruger.newBuilder().
@@ -50,6 +49,14 @@ public class BrugerServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
        streamObserver.onNext(bruger1);
        streamObserver.onCompleted();
    }
+    @Override
+    public void handleAktie(AktieRequest request, StreamObserver<AktieResponse> streamObserver){
+       Aktie aktieGRPC = request.getAktie(0);
+
+       if(request.getParam().equals("buy")){
+
+       }
+    }
 
   /* @Override
    public void getUser(Bruger request,
