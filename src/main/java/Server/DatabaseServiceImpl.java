@@ -13,6 +13,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     private AktieImpl aktieDAO;
    public DatabaseServiceImpl(){
        this.brugerDAO = new BrugerImpl();
+       this.aktieDAO = new AktieImpl();
    }
     @Override
     public void createBruger(Bruger request,
@@ -51,14 +52,47 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
    }
     @Override
     public void handleAktie(AktieRequest request, StreamObserver<AktieResponse> streamObserver){
-       Aktie aktieGRPC = request.getAktie(0);
-
        if(request.getParam().equals("buy")){
-
+            double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getHigh();
+            AktieResponse aktieResponse = AktieResponse.newBuilder()
+                   .setResponse(String.valueOf(value))
+                   .build();
+           streamObserver.onNext(aktieResponse);
+           streamObserver.onCompleted();
+       }
+       else if(request.getParam().equals("sell")) {
+           double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getLow();
+           AktieResponse aktieResponse = AktieResponse.newBuilder()
+                   .setResponse(String.valueOf(value))
+                   .build();
+           streamObserver.onNext(aktieResponse);
+           streamObserver.onCompleted();
+       }
+       else if(request.getParam().equals("update")){
+            aktieDAO.updateAktie(request.getAktie(0).getNavn(), request.getAktie(0).getPris(), request.getAktie(0).getHigh(), request.getAktie(0).getLow());
+           AktieResponse aktieResponse = AktieResponse.newBuilder()
+                   .setResponse("updated: " + request.getAktie(0).getNavn())
+                   .build();
+           streamObserver.onNext(aktieResponse);
+           streamObserver.onCompleted();
        }
     }
 
-  /* @Override
+    @Override
+    public void getAktie (AktieName name, StreamObserver<Aktie> streamObserver){
+        DTOs.Aktie aktie = aktieDAO.getAktie(name.getName());
+        Aktie responseAktie = Aktie.newBuilder()
+                .setNavn(aktie.getNavn())
+                .setPris(aktie.getPris())
+                .setFirma(aktie.getFirma())
+                .setHigh(aktie.getHigh())
+                .setLow(aktie.getLow())
+                .build();
+        streamObserver.onNext(responseAktie);
+        streamObserver.onCompleted();
+    }
+
+/* @Override
    public void getUser(Bruger request,
                         StreamObserver<Bruger> responseObserver) {
       try{
