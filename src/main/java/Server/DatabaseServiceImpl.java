@@ -53,6 +53,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     @Override
     public void handleAktie(AktieRequest request, StreamObserver<AktieResponse> streamObserver){
        if(request.getParam().equals("buy")){
+           System.out.println("Buying");
             double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getHigh();
             AktieResponse aktieResponse = AktieResponse.newBuilder()
                    .setResponse(String.valueOf(value))
@@ -61,6 +62,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
            streamObserver.onCompleted();
        }
        else if(request.getParam().equals("sell")) {
+           System.out.println("Selling");
            double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getLow();
            AktieResponse aktieResponse = AktieResponse.newBuilder()
                    .setResponse(String.valueOf(value))
@@ -69,7 +71,13 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
            streamObserver.onCompleted();
        }
        else if(request.getParam().equals("update")){
+           System.out.println("Updating");
             aktieDAO.updateAktie(request.getAktie(0).getNavn(), request.getAktie(0).getPris(), request.getAktie(0).getHigh(), request.getAktie(0).getLow());
+           System.out.println(request.getAktie(0).getNavn());
+           System.out.println(request.getAktie(0).getPris());
+           System.out.println(request.getAktie(0).getFirma());
+           System.out.println(request.getAktie(0).getHigh());
+           System.out.println(request.getAktie(0).getLow());
            AktieResponse aktieResponse = AktieResponse.newBuilder()
                    .setResponse("updated: " + request.getAktie(0).getNavn())
                    .build();

@@ -65,19 +65,20 @@ public final class BrugerServiceOuterClass {
       "quest\022#\n\006bruger\030\001 \003(\0132\023.GRPC.bruger.Brug" +
       "er\022\r\n\005param\030\002 \001(\t\"M\n\005Aktie\022\014\n\004navn\030\001 \001(\t" +
       "\022\r\n\005firma\030\002 \001(\t\022\014\n\004pris\030\003 \001(\001\022\014\n\004high\030\004 " +
-      "\001(\001\022\013\n\003low\030\005 \001(\001\"O\n\014AktieRequest\022!\n\005akti" +
+      "\001(\001\022\013\n\003low\030\005 \001(\001\"`\n\014AktieRequest\022!\n\005akti" +
       "e\030\001 \003(\0132\022.GRPC.bruger.Aktie\022\r\n\005param\030\002 \001" +
-      "(\t\022\r\n\005antal\030\003 \001(\005\"\031\n\tAktieName\022\014\n\004name\030\001",
-      " \001(\t\"!\n\rAktieResponse\022\020\n\010response\030\001 \001(\t2" +
-      "\325\002\n\rBrugerService\022@\n\014createBruger\022\023.GRPC" +
-      ".bruger.Bruger\032\033.GRPC.bruger.BrugerRespo" +
-      "nse\022<\n\tgetBruger\022\032.GRPC.bruger.BrugerReq" +
-      "uest\032\023.GRPC.bruger.Bruger\022D\n\013handleAktie" +
-      "\022\031.GRPC.bruger.AktieRequest\032\032.GRPC.bruge" +
-      "r.AktieResponse\022F\n\013loginBruger\022\032.GRPC.br" +
-      "uger.BrugerRequest\032\033.GRPC.bruger.BrugerR" +
-      "esponse\0226\n\010getAktie\022\026.GRPC.bruger.AktieN" +
-      "ame\032\022.GRPC.bruger.AktieB\002P\001b\006proto3"
+      "(\t\022\017\n\007depotID\030\003 \001(\005\022\r\n\005antal\030\004 \001(\005\"\031\n\tAk",
+      "tieName\022\014\n\004name\030\001 \001(\t\"!\n\rAktieResponse\022\020" +
+      "\n\010response\030\001 \001(\t2\325\002\n\rBrugerService\022@\n\014cr" +
+      "eateBruger\022\023.GRPC.bruger.Bruger\032\033.GRPC.b" +
+      "ruger.BrugerResponse\022<\n\tgetBruger\022\032.GRPC" +
+      ".bruger.BrugerRequest\032\023.GRPC.bruger.Brug" +
+      "er\022D\n\013handleAktie\022\031.GRPC.bruger.AktieReq" +
+      "uest\032\032.GRPC.bruger.AktieResponse\022F\n\013logi" +
+      "nBruger\022\032.GRPC.bruger.BrugerRequest\032\033.GR" +
+      "PC.bruger.BrugerResponse\0226\n\010getAktie\022\026.G" +
+      "RPC.bruger.AktieName\032\022.GRPC.bruger.Aktie",
+      "B\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -120,7 +121,7 @@ public final class BrugerServiceOuterClass {
     internal_static_GRPC_bruger_AktieRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GRPC_bruger_AktieRequest_descriptor,
-        new java.lang.String[] { "Aktie", "Param", "Antal", });
+        new java.lang.String[] { "Aktie", "Param", "DepotID", "Antal", });
     internal_static_GRPC_bruger_AktieName_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_GRPC_bruger_AktieName_fieldAccessorTable = new
