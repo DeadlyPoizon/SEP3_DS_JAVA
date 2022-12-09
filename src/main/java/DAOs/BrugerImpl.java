@@ -65,7 +65,7 @@ public class BrugerImpl implements BrugerDAO {
     public void buyAktie(double købspris, int depotid) {
         Bruger temp = db.mapSingle(new mapBruger(), "SELECT * FROM sydnet.bruger WHERE depotid = ?", depotid);
         double tempdouble = temp.getSaldo() - købspris;
-        db.executeUpdate("UPDATE sydnet.bruger set saldo = ?, WHERE depotid = ?", tempdouble, depotid);
+        db.executeUpdate("UPDATE sydnet.bruger set saldo = ? WHERE depotid = ?", tempdouble, depotid);
 
     }
 }
