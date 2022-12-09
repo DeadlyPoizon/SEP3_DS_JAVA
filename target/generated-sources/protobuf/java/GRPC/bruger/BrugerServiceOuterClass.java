@@ -81,7 +81,7 @@ public final class BrugerServiceOuterClass {
       "tieName\022\014\n\004name\030\001 \001(\t\"!\n\rAktieResponse\022\020" +
       "\n\010response\030\001 \001(\t\"/\n\tallAktier\022\"\n\006aktier\030" +
       "\001 \003(\0132\022.GRPC.bruger.Aktie\"\035\n\014getAllAktie" +
-      "r\022\r\n\005param\030\001 \001(\t2\222\003\n\rBrugerService\022@\n\014cr" +
+      "r\022\r\n\005param\030\001 \001(\t2\333\003\n\rBrugerService\022@\n\014cr" +
       "eateBruger\022\023.GRPC.bruger.Bruger\032\033.GRPC.b" +
       "ruger.BrugerResponse\022<\n\tgetBruger\022\032.GRPC" +
       ".bruger.BrugerRequest\032\023.GRPC.bruger.Brug" +
@@ -91,7 +91,9 @@ public final class BrugerServiceOuterClass {
       "PC.bruger.BrugerResponse\0226\n\010getAktie\022\026.G" +
       "RPC.bruger.AktieName\032\022.GRPC.bruger.Aktie" +
       "\022;\n\006getAll\022\031.GRPC.bruger.getAllAktier\032\026." +
-      "GRPC.bruger.allAktierB\002P\001b\006proto3"
+      "GRPC.bruger.allAktier\022G\n\014handleBruger\022\032." +
+      "GRPC.bruger.BrugerRequest\032\033.GRPC.bruger." +
+      "BrugerResponseB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
