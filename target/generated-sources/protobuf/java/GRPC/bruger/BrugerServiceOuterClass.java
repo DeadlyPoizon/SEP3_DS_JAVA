@@ -49,6 +49,16 @@ public final class BrugerServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GRPC_bruger_AktieResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_allAktier_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_allAktier_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_getAllAktier_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_getAllAktier_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -69,16 +79,19 @@ public final class BrugerServiceOuterClass {
       "e\030\001 \003(\0132\022.GRPC.bruger.Aktie\022\r\n\005param\030\002 \001" +
       "(\t\022\017\n\007depotID\030\003 \001(\005\022\r\n\005antal\030\004 \001(\005\"\031\n\tAk",
       "tieName\022\014\n\004name\030\001 \001(\t\"!\n\rAktieResponse\022\020" +
-      "\n\010response\030\001 \001(\t2\325\002\n\rBrugerService\022@\n\014cr" +
+      "\n\010response\030\001 \001(\t\"/\n\tallAktier\022\"\n\006aktier\030" +
+      "\001 \003(\0132\022.GRPC.bruger.Aktie\"\035\n\014getAllAktie" +
+      "r\022\r\n\005param\030\001 \001(\t2\222\003\n\rBrugerService\022@\n\014cr" +
       "eateBruger\022\023.GRPC.bruger.Bruger\032\033.GRPC.b" +
       "ruger.BrugerResponse\022<\n\tgetBruger\022\032.GRPC" +
       ".bruger.BrugerRequest\032\023.GRPC.bruger.Brug" +
       "er\022D\n\013handleAktie\022\031.GRPC.bruger.AktieReq" +
       "uest\032\032.GRPC.bruger.AktieResponse\022F\n\013logi" +
-      "nBruger\022\032.GRPC.bruger.BrugerRequest\032\033.GR" +
+      "nBruger\022\032.GRPC.bruger.BrugerRequest\032\033.GR",
       "PC.bruger.BrugerResponse\0226\n\010getAktie\022\026.G" +
-      "RPC.bruger.AktieName\032\022.GRPC.bruger.Aktie",
-      "B\002P\001b\006proto3"
+      "RPC.bruger.AktieName\032\022.GRPC.bruger.Aktie" +
+      "\022;\n\006getAll\022\031.GRPC.bruger.getAllAktier\032\026." +
+      "GRPC.bruger.allAktierB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -134,6 +147,18 @@ public final class BrugerServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GRPC_bruger_AktieResponse_descriptor,
         new java.lang.String[] { "Response", });
+    internal_static_GRPC_bruger_allAktier_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_GRPC_bruger_allAktier_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_allAktier_descriptor,
+        new java.lang.String[] { "Aktier", });
+    internal_static_GRPC_bruger_getAllAktier_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_GRPC_bruger_getAllAktier_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_getAllAktier_descriptor,
+        new java.lang.String[] { "Param", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

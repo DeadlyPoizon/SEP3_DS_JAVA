@@ -2,12 +2,12 @@ package DAOs;
 
 import DAOs.Interfaces.AktieDAO;
 import DTOs.Aktie;
-import DTOs.Bruger;
 import db.DBHelper;
 import db.DataMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AktieImpl implements AktieDAO {
 
@@ -35,6 +35,11 @@ public class AktieImpl implements AktieDAO {
 
         return aktie;
     }
+
+    public List<Aktie> getAll() {
+        return db.map(new AktieImpl.mapAktie(), "SELECT * FROM sydnet.aktie");
+    }
+
     private static class mapAktie implements DataMapper<Aktie> {
         public Aktie create(ResultSet rs) throws SQLException {
             String navn = rs.getString("navn");

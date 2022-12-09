@@ -3,17 +3,28 @@ package Server;
 
 import DAOs.AktieImpl;
 import DAOs.BrugerImpl;
+import DAOs.DepotImpl;
+import DAOs.TransaktionImpl;
 import GRPC.bruger.Bruger;
 import GRPC.bruger.*;
 import io.grpc.stub.StreamObserver;
+
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase {
 
     private BrugerImpl brugerDAO;
     private AktieImpl aktieDAO;
+    private DepotImpl depotDAO;
+    private TransaktionImpl transDAO;
    public DatabaseServiceImpl(){
        this.brugerDAO = new BrugerImpl();
        this.aktieDAO = new AktieImpl();
+       this.depotDAO = new DepotImpl();
+       this.transDAO = new TransaktionImpl();
    }
     @Override
     public void createBruger(Bruger request,
@@ -54,9 +65,13 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     public void handleAktie(AktieRequest request, StreamObserver<AktieResponse> streamObserver){
        if(request.getParam().equals("buy")){
            System.out.println("Buying");
-            double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getHigh();
+            double købspris = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getHigh();
+            depotDAO.createDepotEntry(request.getDepotID(), request.getAktie(0).getNavn(), request.getAntal(), købspris);
+            transDAO.createTransaktion(request.getDepotID(), brugerDAO.getUser(request.getDepotID()), request.getAktie(0).getNavn(), request.getAntal(), new Date(System.currentTimeMillis()));
+            brugerDAO.buyAktie(købspris, request.getDepotID());
+
             AktieResponse aktieResponse = AktieResponse.newBuilder()
-                   .setResponse(String.valueOf(value))
+                   .setResponse(request.getAntal() + " " + request.getAktie(0).getFirma() + " aktier købt til pris: " + købspris)
                    .build();
            streamObserver.onNext(aktieResponse);
            streamObserver.onCompleted();
@@ -97,6 +112,27 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
                 .setLow(aktie.getLow())
                 .build();
         streamObserver.onNext(responseAktie);
+        streamObserver.onCompleted();
+    }
+
+    @Override
+    public void getAll(getAllAktier request, StreamObserver<allAktier> streamObserver){
+        List<DTOs.Aktie> aktier = aktieDAO.getAll();
+        List<Aktie> tempList = new ArrayList<>();
+
+        for (int i = 0; i < aktier.size(); i++) {
+            Aktie tempaktie = Aktie.newBuilder()
+                    .setNavn(aktier.get(i).getNavn())
+                    .setFirma(aktier.get(i).getFirma())
+                    .setPris(aktier.get(i).getPris())
+                    .setHigh(aktier.get(i).getHigh())
+                    .setLow(aktier.get(i).getLow())
+                    .build();
+            tempList.add(tempaktie);
+        }
+        allAktier allAktier = GRPC.bruger.allAktier.newBuilder().addAllAktier(tempList).build();
+        System.out.println(allAktier.toString());
+        streamObserver.onNext(allAktier);
         streamObserver.onCompleted();
     }
 

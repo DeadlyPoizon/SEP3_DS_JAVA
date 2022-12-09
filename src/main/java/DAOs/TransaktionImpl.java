@@ -73,7 +73,7 @@ public class TransaktionImpl implements TransaktionDAO {
 
     @Override
     public boolean createTransaktion(int transaktionsID, String username, String aktieNavn, int antal, java.sql.Date date) {
-        db.executeUpdate("INSERT INTO sydnet.transaktion VALUES (?, ?, ?, ?, ?)", transaktionsID, username, aktieNavn, antal, date);
+        db.executeUpdate("INSERT INTO sydnet.transaktion VALUES (DEFAULT, ?, ?, ?, ?)", username, aktieNavn, antal, date);
         return true;
     }
 }

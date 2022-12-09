@@ -24,14 +24,13 @@ public class DepotImpl implements DepotDAO {
     }
 
 
-    private static Depot createDepotDTO(int depotID, String aktieNavn, int antal){
+    private static Depot createDepotDTO(int depotID, String aktieNavn, int antal, double købspris){
 
         Depot depot = new Depot();
         depot.setId(depotID);
         depot.setAktieNavn(aktieNavn);
         depot.setAntal(antal);
-
-
+        depot.setKøbspris(købspris);
         return depot;
     }
     private static class mapDepot implements DataMapper<Depot> {
@@ -39,10 +38,10 @@ public class DepotImpl implements DepotDAO {
             int id = rs.getInt("id");
             String aktieNavn = rs.getString("aktieNavn");
             int antal = rs.getInt("antal");
+            double købspris = rs.getDouble("købspris");
 
 
-
-            return createDepotDTO(id,aktieNavn,antal);
+            return createDepotDTO(id,aktieNavn,antal, købspris);
         }
     }
 
@@ -54,8 +53,8 @@ public class DepotImpl implements DepotDAO {
     }
 
     @Override
-    public boolean createDepotEntry(int id, String aktieNavn, int antal) {
-        db.executeUpdate("INSERT INTO sydnet.depot VALUES (?, ?, ?)", id, aktieNavn, antal);
+    public boolean createDepotEntry(int id, String aktieNavn, int antal, double købspris) {
+        db.executeUpdate("INSERT INTO sydnet.depot VALUES (?, ?, ?, ?)", id, aktieNavn, antal, købspris);
         return true;
     }
 }
