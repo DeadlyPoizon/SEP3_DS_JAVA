@@ -69,4 +69,5 @@ public class AktieImpl implements AktieDAO {
         db.executeUpdate("UPDATE sydnet.aktie SET pris = ?, high = ?, low = ? WHERE navn = ?", pris, high, low, navn);
         return true;
     }
+
 }

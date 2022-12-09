@@ -1,7 +1,6 @@
 package DAOs;
 
 import DAOs.Interfaces.TransaktionDAO;
-import DTOs.Aktie;
 import DTOs.Transaktion;
 import db.DBHelper;
 import db.DataMapper;
@@ -75,5 +74,10 @@ public class TransaktionImpl implements TransaktionDAO {
     public boolean createTransaktion(int transaktionsID, String username, String aktieNavn, int antal, java.sql.Date date) {
         db.executeUpdate("INSERT INTO sydnet.transaktion VALUES (DEFAULT, ?, ?, ?, ?)", username, aktieNavn, antal, date);
         return true;
+    }
+
+    @Override
+    public void reset(String username) {
+       db.executeUpdate("DELETE FROM sydnet.transaktion WHERE username = ?", username);
     }
 }

@@ -11,4 +11,6 @@ public interface BrugerDAO {
     String getUser(int depotID);
 
     void buyAktie(double købspris, int depotid);
+
+    void reset(int depotID);
 }

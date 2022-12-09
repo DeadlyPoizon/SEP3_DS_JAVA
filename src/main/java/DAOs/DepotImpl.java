@@ -57,4 +57,9 @@ public class DepotImpl implements DepotDAO {
         db.executeUpdate("INSERT INTO sydnet.depot VALUES (?, ?, ?, ?)", id, aktieNavn, antal, købspris);
         return true;
     }
+
+    @Override
+    public void reset(int depotID) {
+        db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ?", depotID);
+    }
 }

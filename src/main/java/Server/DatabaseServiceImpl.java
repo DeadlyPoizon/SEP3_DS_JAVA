@@ -98,8 +98,17 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
                    .build();
            streamObserver.onNext(aktieResponse);
            streamObserver.onCompleted();
+       } else if (request.getParam().equals("reset")) {
+           brugerDAO.reset(request.getDepotID());
+           depotDAO.reset(request.getDepotID());
+           transDAO.reset(brugerDAO.getUser(request.getDepotID()));
+
+           AktieResponse response = AktieResponse.newBuilder()
+                   .setResponse(brugerDAO.getUser(request.getDepotID()) + " er blevet reset").build();
+           streamObserver.onNext(response);
+           streamObserver.onCompleted();
+           }
        }
-    }
 
     @Override
     public void getAktie (AktieName name, StreamObserver<Aktie> streamObserver){

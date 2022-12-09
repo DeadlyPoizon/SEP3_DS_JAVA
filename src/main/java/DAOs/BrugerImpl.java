@@ -68,4 +68,9 @@ public class BrugerImpl implements BrugerDAO {
         db.executeUpdate("UPDATE sydnet.bruger set saldo = ? WHERE depotid = ?", tempdouble, depotid);
 
     }
+
+    @Override
+    public void reset(int depotID) {
+        db.executeUpdate("UPDATE sydnet.bruger set saldo = 100000 WHERE depotid = ?", depotID);
+    }
 }
