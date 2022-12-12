@@ -16,6 +16,7 @@ public  final class getAllAktier extends
   }
   private getAllAktier() {
     param_ = "";
+    depotID_ = 0;
   }
 
   @java.lang.Override
@@ -47,6 +48,11 @@ public  final class getAllAktier extends
             java.lang.String s = input.readStringRequireUtf8();
 
             param_ = s;
+            break;
+          }
+          case 16: {
+
+            depotID_ = input.readInt32();
             break;
           }
         }
@@ -106,6 +112,15 @@ public  final class getAllAktier extends
     }
   }
 
+  public static final int DEPOTID_FIELD_NUMBER = 2;
+  private int depotID_;
+  /**
+   * <code>int32 depotID = 2;</code>
+   */
+  public int getDepotID() {
+    return depotID_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -121,6 +136,9 @@ public  final class getAllAktier extends
     if (!getParamBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, param_);
     }
+    if (depotID_ != 0) {
+      output.writeInt32(2, depotID_);
+    }
   }
 
   public int getSerializedSize() {
@@ -130,6 +148,10 @@ public  final class getAllAktier extends
     size = 0;
     if (!getParamBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, param_);
+    }
+    if (depotID_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, depotID_);
     }
     memoizedSize = size;
     return size;
@@ -149,6 +171,8 @@ public  final class getAllAktier extends
     boolean result = true;
     result = result && getParam()
         .equals(other.getParam());
+    result = result && (getDepotID()
+        == other.getDepotID());
     return result;
   }
 
@@ -161,6 +185,8 @@ public  final class getAllAktier extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PARAM_FIELD_NUMBER;
     hash = (53 * hash) + getParam().hashCode();
+    hash = (37 * hash) + DEPOTID_FIELD_NUMBER;
+    hash = (53 * hash) + getDepotID();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -292,6 +318,8 @@ public  final class getAllAktier extends
       super.clear();
       param_ = "";
 
+      depotID_ = 0;
+
       return this;
     }
 
@@ -315,6 +343,7 @@ public  final class getAllAktier extends
     public GRPC.bruger.getAllAktier buildPartial() {
       GRPC.bruger.getAllAktier result = new GRPC.bruger.getAllAktier(this);
       result.param_ = param_;
+      result.depotID_ = depotID_;
       onBuilt();
       return result;
     }
@@ -359,6 +388,9 @@ public  final class getAllAktier extends
       if (!other.getParam().isEmpty()) {
         param_ = other.param_;
         onChanged();
+      }
+      if (other.getDepotID() != 0) {
+        setDepotID(other.getDepotID());
       }
       onChanged();
       return this;
@@ -451,6 +483,32 @@ public  final class getAllAktier extends
   checkByteStringIsUtf8(value);
       
       param_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int depotID_ ;
+    /**
+     * <code>int32 depotID = 2;</code>
+     */
+    public int getDepotID() {
+      return depotID_;
+    }
+    /**
+     * <code>int32 depotID = 2;</code>
+     */
+    public Builder setDepotID(int value) {
+      
+      depotID_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 depotID = 2;</code>
+     */
+    public Builder clearDepotID() {
+      
+      depotID_ = 0;
       onChanged();
       return this;
     }

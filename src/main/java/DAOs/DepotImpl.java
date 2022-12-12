@@ -1,12 +1,14 @@
 package DAOs;
 
 import DAOs.Interfaces.DepotDAO;
+import DTOs.Aktie;
 import DTOs.Depot;
 import db.DBHelper;
 import db.DataMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DepotImpl implements DepotDAO {
 
@@ -73,5 +75,10 @@ public class DepotImpl implements DepotDAO {
             System.out.println("sell");
             db.executeUpdate("UPDATE sydnet.depot SET antal = ? WHERE id = ? AND aktienavn = ?", antal, depotID, navn);
         }
+    }
+
+    @Override
+    public List<Depot> getAll(int depotID) {
+        return db.map(new DepotImpl.mapDepot(), "SELECT * FROM sydnet.depot WHERE id = ?", depotID);
     }
 }

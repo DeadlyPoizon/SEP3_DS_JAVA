@@ -16,4 +16,9 @@ public interface getAllAktierOrBuilder extends
    */
   com.google.protobuf.ByteString
       getParamBytes();
+
+  /**
+   * <code>int32 depotID = 2;</code>
+   */
+  int getDepotID();
 }

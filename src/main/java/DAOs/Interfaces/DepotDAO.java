@@ -1,6 +1,9 @@
 package DAOs.Interfaces;
 
+import DTOs.Aktie;
 import DTOs.Depot;
+
+import java.util.List;
 
 public interface DepotDAO {
 
@@ -11,4 +14,6 @@ public interface DepotDAO {
     void reset(int depotID);
 
     void removeDepotEntry(int depotID, String navn, int antal);
+
+    List<Depot> getAll(int depotID);
 }

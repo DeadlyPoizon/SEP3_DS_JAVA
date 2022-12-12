@@ -7,6 +7,7 @@ import DAOs.DepotImpl;
 import DAOs.TransaktionImpl;
 import GRPC.bruger.Bruger;
 import GRPC.bruger.*;
+import io.grpc.Grpc;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Date;
@@ -136,6 +137,26 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
         allAktier allAktier = GRPC.bruger.allAktier.newBuilder().addAllAktier(tempList).build();
         System.out.println(allAktier.toString());
         streamObserver.onNext(allAktier);
+        streamObserver.onCompleted();
+    }
+
+    @Override
+    public void getAllDepoter(getDepotFraID depotID, StreamObserver<DepotResponse> streamObserver) {
+       List<DTOs.Depot> depoter = depotDAO.getAll(depotID.getDepotID());
+       List<Depot> tempDepot = new ArrayList<>();
+
+        for (int i = 0; i < depoter.size(); i++) {
+            Depot depot = Depot.newBuilder()
+                    .setId(depoter.get(i).getId())
+                    .setAntal(depoter.get(i).getAntal())
+                    .setAktienavn(depoter.get(i).getAktieNavn())
+                    .setPris(depoter.get(i).getKøbspris())
+                    .build();
+            tempDepot.add(depot);
+        }
+
+        DepotResponse response = DepotResponse.newBuilder().addAllDepoter(tempDepot).build();
+        streamObserver.onNext(response);
         streamObserver.onCompleted();
     }
 
