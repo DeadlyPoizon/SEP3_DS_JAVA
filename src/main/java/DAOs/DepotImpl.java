@@ -64,12 +64,14 @@ public class DepotImpl implements DepotDAO {
 
     @Override
     public void removeDepotEntry(int depotID, String navn, int antal) {
-        Depot depot = db.mapSingle(new mapDepot(), "SELECT * FROM sydnet.bruger WHERE depotid = ? AND aktienavn = ?", depotID, navn);
+        Depot depot = db.mapSingle(new mapDepot(), "SELECT * FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
         if(antal == depot.getAntal()){
+            System.out.println("delet");
             db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
         }
-        else if (antal > depot.getAntal()) {
-            db.executeUpdate("UPDATE sydnet.depot SET antal = ? WHERE id = ? AND aktienavn = ?", antal, depot, navn);
+        else if (antal < depot.getAntal()) {
+            System.out.println("sell");
+            db.executeUpdate("UPDATE sydnet.depot SET antal = ? WHERE id = ? AND aktienavn = ?", antal, depotID, navn);
         }
     }
 }
