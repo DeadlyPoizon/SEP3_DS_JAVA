@@ -85,9 +85,9 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
            streamObserver.onNext(aktieResponse);
            streamObserver.onCompleted();
        }
-       else if(request.getParam().equals("update")){
+       else if(request.getParam().equals("update")) {
            System.out.println("Updating");
-            aktieDAO.updateAktie(request.getAktie(0).getNavn(), request.getAktie(0).getPris(), request.getAktie(0).getHigh(), request.getAktie(0).getLow());
+           aktieDAO.updateAktie(request.getAktie(0).getNavn(), request.getAktie(0).getPris(), request.getAktie(0).getHigh(), request.getAktie(0).getLow());
            System.out.println(request.getAktie(0).getNavn());
            System.out.println(request.getAktie(0).getPris());
            System.out.println(request.getAktie(0).getFirma());
@@ -98,16 +98,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
                    .build();
            streamObserver.onNext(aktieResponse);
            streamObserver.onCompleted();
-       } else if (request.getParam().equals("reset")) {
-           brugerDAO.reset(request.getDepotID());
-           depotDAO.reset(request.getDepotID());
-           transDAO.reset(brugerDAO.getUser(request.getDepotID()));
-
-           AktieResponse response = AktieResponse.newBuilder()
-                   .setResponse(brugerDAO.getUser(request.getDepotID()) + " er blevet reset").build();
-           streamObserver.onNext(response);
-           streamObserver.onCompleted();
-           }
+       }
        }
 
     @Override
@@ -143,6 +134,21 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
         System.out.println(allAktier.toString());
         streamObserver.onNext(allAktier);
         streamObserver.onCompleted();
+    }
+
+
+    @Override
+    public void handleBruger(BrugerRequest request, StreamObserver<BrugerResponse> streamObserver){
+        if (request.getParam().equals("reset")) {
+            brugerDAO.reset(request.getBruger(0).getDepotID());
+            depotDAO.reset(request.getBruger(0).getDepotID());
+            transDAO.reset(brugerDAO.getUser(request.getBruger(0).getDepotID()));
+
+            BrugerResponse response =  BrugerResponse.newBuilder()
+                    .setResponse(true).build();
+            streamObserver.onNext(response);
+            streamObserver.onCompleted();
+        }
     }
 
 /* @Override
