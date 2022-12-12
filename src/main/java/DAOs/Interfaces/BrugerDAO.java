@@ -13,4 +13,6 @@ public interface BrugerDAO {
     void buyAktie(double købspris, int depotid);
 
     void reset(int depotID);
+
+    void sellAktie(double salgspris, int depotid);
 }

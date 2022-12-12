@@ -62,4 +62,9 @@ public class DepotImpl implements DepotDAO {
     public void reset(int depotID) {
         db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ?", depotID);
     }
+
+    @Override
+    public void removeDepotEntry(int depotID, String navn) {
+        db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
+    }
 }

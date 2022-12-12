@@ -73,4 +73,11 @@ public class BrugerImpl implements BrugerDAO {
     public void reset(int depotID) {
         db.executeUpdate("UPDATE sydnet.bruger set saldo = 100000 WHERE depotid = ?", depotID);
     }
+
+    @Override
+    public void sellAktie(double salgspris, int depotid) {
+        Bruger temp = db.mapSingle(new mapBruger(), "SELECT * FROM sydnet.bruger WHERE depotid = ?", depotid);
+        double tempdouble = temp.getSaldo() + salgspris;
+        db.executeUpdate("UPDATE sydnet.bruger set saldo = ? WHERE depotid = ?", tempdouble, depotid);
+    }
 }

@@ -79,6 +79,9 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
        else if(request.getParam().equals("sell")) {
            System.out.println("Selling");
            double value = request.getAntal() * aktieDAO.getAktie(request.getAktie(0).getNavn()).getLow();
+           brugerDAO.sellAktie(value, request.getDepotID());
+           depotDAO.removeDepotEntry(request.getDepotID(), request.getAktie(0).getNavn());
+           transDAO.createTransaktion(request.getDepotID(), brugerDAO.getUser(request.getDepotID()), request.getAktie(0).getNavn(), request.getAntal(), new Date(System.currentTimeMillis()));
            AktieResponse aktieResponse = AktieResponse.newBuilder()
                    .setResponse(String.valueOf(value))
                    .build();

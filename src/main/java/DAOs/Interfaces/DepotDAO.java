@@ -9,4 +9,6 @@ public interface DepotDAO {
     boolean createDepotEntry(int id, String aktieNavn, int antal, double købspris);
 
     void reset(int depotID);
+
+    void removeDepotEntry(int depotID, String navn);
 }
