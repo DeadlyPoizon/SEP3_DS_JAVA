@@ -2,7 +2,6 @@ package DAOs;
 
 import DAOs.Interfaces.DepotDAO;
 import DTOs.Depot;
-import DTOs.Transaktion;
 import db.DBHelper;
 import db.DataMapper;
 
@@ -64,7 +63,13 @@ public class DepotImpl implements DepotDAO {
     }
 
     @Override
-    public void removeDepotEntry(int depotID, String navn) {
-        db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
+    public void removeDepotEntry(int depotID, String navn, int antal) {
+        Depot depot = db.mapSingle(new mapDepot(), "SELECT * FROM sydnet.bruger WHERE depotid = ? AND aktienavn = ?", depotID, navn);
+        if(antal == depot.getAntal()){
+            db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
+        }
+        else if (antal > depot.getAntal()) {
+            db.executeUpdate("UPDATE sydnet.depot SET antal = ? WHERE id = ? AND aktienavn = ?", antal, depot, navn);
+        }
     }
 }

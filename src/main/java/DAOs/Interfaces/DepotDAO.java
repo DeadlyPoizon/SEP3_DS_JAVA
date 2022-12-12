@@ -10,5 +10,5 @@ public interface DepotDAO {
 
     void reset(int depotID);
 
-    void removeDepotEntry(int depotID, String navn);
+    void removeDepotEntry(int depotID, String navn, int antal);
 }
