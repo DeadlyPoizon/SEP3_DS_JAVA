@@ -7,7 +7,7 @@ public class Depot {
     private int antal;
     private double købspris;
 
-    public Depot(){
+    public Depot() {
     }
 
     public Depot(int id, String aktieNavn, int antal, double købspris) {

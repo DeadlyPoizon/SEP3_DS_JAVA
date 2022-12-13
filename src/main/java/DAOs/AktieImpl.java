@@ -24,7 +24,7 @@ public class AktieImpl implements AktieDAO {
     }
 
 
-    private static Aktie createAktieDTO(String navn, double pris, String firma, double high, double low){
+    private static Aktie createAktieDTO(String navn, double pris, String firma, double high, double low) {
 
         Aktie aktie = new Aktie();
         aktie.setNavn(navn);
@@ -49,7 +49,7 @@ public class AktieImpl implements AktieDAO {
             double low = rs.getDouble("low");
 
 
-            return createAktieDTO(navn,pris,firma,high,low);
+            return createAktieDTO(navn, pris, firma, high, low);
         }
     }
 
@@ -61,9 +61,10 @@ public class AktieImpl implements AktieDAO {
 
     @Override
     public boolean createAktie(String navn, double pris, String firma, double high, double low) {
-        db.executeUpdate("INSERT INTO sydnet.aktie VALUES (?, ?, ?, ?,?)", navn, pris, firma, high,low);
+        db.executeUpdate("INSERT INTO sydnet.aktie VALUES (?, ?, ?, ?,?)", navn, pris, firma, high, low);
         return true;
     }
+
     @Override
     public boolean updateAktie(String navn, double pris, double high, double low) {
         db.executeUpdate("UPDATE sydnet.aktie SET pris = ?, high = ?, low = ? WHERE navn = ?", pris, high, low, navn);

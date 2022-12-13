@@ -22,19 +22,20 @@ public class BrugerImpl implements BrugerDAO {
         this.db = new DBHelper<>(JDBC_URL, USERNAME, PASSWORD);
     }
 
-    private static Bruger createBrugerDTO(String username, String password, int depotID, double saldo){
+    private static Bruger createBrugerDTO(String username, String password, int depotID, double saldo) {
 
-       Bruger bruger = new Bruger();
-       bruger.setUsername(username);
-       bruger.setPassword(password);
-       bruger.setDepotId(depotID);
-       bruger.setSaldo(saldo);
+        Bruger bruger = new Bruger();
+        bruger.setUsername(username);
+        bruger.setPassword(password);
+        bruger.setDepotId(depotID);
+        bruger.setSaldo(saldo);
 
         return bruger;
     }
+
     @Override
     public boolean create(String username, String password, int depotID, double saldo) {
-            db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, ?, ?)", username, password, depotID, saldo);
+        db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, ?, ?)", username, password, depotID, saldo);
         return true;
     }
 
@@ -46,7 +47,7 @@ public class BrugerImpl implements BrugerDAO {
             int depotID = rs.getInt("depotID");
             double saldo = rs.getDouble("saldo");
 
-            return createBrugerDTO(username,password,depotID,saldo);
+            return createBrugerDTO(username, password, depotID, saldo);
         }
     }
 

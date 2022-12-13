@@ -34,7 +34,7 @@ public class DBHelper<T> {
 
     private PreparedStatement prepare(Connection connection, String sql, Object[] parameters) throws SQLException {
         PreparedStatement stat = connection.prepareStatement(sql);
-        for(int i = 0; i < parameters.length; i++) {
+        for (int i = 0; i < parameters.length; i++) {
             stat.setObject(i + 1, parameters[i]);
         }
         return stat;
@@ -53,7 +53,7 @@ public class DBHelper<T> {
         try (Connection connection = getConnection()) {
             PreparedStatement stat = prepare(connection, sql, parameters);
             ResultSet rs = stat.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return mapper.create(rs);
             } else {
                 return null;
@@ -68,7 +68,7 @@ public class DBHelper<T> {
             PreparedStatement stat = prepare(connection, sql, parameters);
             ResultSet rs = stat.executeQuery();
             LinkedList<T> all = new LinkedList<>();
-            while(rs.next()) {
+            while (rs.next()) {
                 all.add(mapper.create(rs));
             }
             return all;

@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class Transaktion {
 
-private int transaktionsID;
-private String username;
-private String aktienavn;
-private int antal;
-private Date date;
+    private int transaktionsID;
+    private String username;
+    private String aktienavn;
+    private int antal;
+    private Date date;
 
 
-    public Transaktion(){
+    public Transaktion() {
     }
 
     public Transaktion(int transaktionsID, String username, String aktienavn, int antal, Date date) {

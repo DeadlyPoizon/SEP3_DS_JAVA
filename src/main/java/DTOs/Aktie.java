@@ -11,7 +11,7 @@ public class Aktie {
     private double low;
 
 
-    public Aktie(){
+    public Aktie() {
     }
 
     public Aktie(String navn, double pris, String firma, double high, double low) {

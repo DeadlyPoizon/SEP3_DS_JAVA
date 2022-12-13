@@ -25,7 +25,7 @@ public class DepotImpl implements DepotDAO {
     }
 
 
-    private static Depot createDepotDTO(int depotID, String aktieNavn, int antal, double købspris){
+    private static Depot createDepotDTO(int depotID, String aktieNavn, int antal, double købspris) {
 
         Depot depot = new Depot();
         depot.setId(depotID);
@@ -34,6 +34,7 @@ public class DepotImpl implements DepotDAO {
         depot.setKøbspris(købspris);
         return depot;
     }
+
     private static class mapDepot implements DataMapper<Depot> {
         public Depot create(ResultSet rs) throws SQLException {
             int id = rs.getInt("id");
@@ -42,10 +43,9 @@ public class DepotImpl implements DepotDAO {
             double købspris = rs.getDouble("købspris");
 
 
-            return createDepotDTO(id,aktieNavn,antal, købspris);
+            return createDepotDTO(id, aktieNavn, antal, købspris);
         }
     }
-
 
 
     @Override
@@ -67,11 +67,10 @@ public class DepotImpl implements DepotDAO {
     @Override
     public void removeDepotEntry(int depotID, String navn, int antal) {
         Depot depot = db.mapSingle(new mapDepot(), "SELECT * FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
-        if(antal == depot.getAntal()){
+        if (antal == depot.getAntal()) {
             System.out.println("delet");
             db.executeUpdate("DELETE FROM sydnet.depot WHERE id = ? AND aktienavn = ?", depotID, navn);
-        }
-        else if (antal < depot.getAntal()) {
+        } else if (antal < depot.getAntal()) {
             System.out.println("sell");
             db.executeUpdate("UPDATE sydnet.depot SET antal = ? WHERE id = ? AND aktienavn = ?", antal, depotID, navn);
         }

@@ -2,13 +2,13 @@ package DTOs;
 
 public class Bruger {
 
-private String username;
-private String password;
-private int depotId;
-private double saldo;
+    private String username;
+    private String password;
+    private int depotId;
+    private double saldo;
 
-public Bruger(){
-}
+    public Bruger() {
+    }
 
     public Bruger(String username, String password, int depotID, double saldo) {
         this.username = username;

@@ -74,6 +74,21 @@ public final class BrugerServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GRPC_bruger_Depot_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_Transaction_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_Transaction_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_AllTransactions_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_AllTransactions_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GRPC_bruger_TransactionRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GRPC_bruger_TransactionRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -100,21 +115,29 @@ public final class BrugerServiceOuterClass {
       "DepotFraID\022\017\n\007depotID\030\001 \001(\005\"4\n\rDepotResp" +
       "onse\022#\n\007depoter\030\001 \003(\0132\022.GRPC.bruger.Depo" +
       "t\"C\n\005Depot\022\n\n\002id\030\001 \001(\005\022\021\n\taktienavn\030\002 \001(" +
-      "\t\022\r\n\005antal\030\003 \001(\005\022\014\n\004pris\030\004 \001(\0012\244\004\n\rBruge" +
-      "rService\022@\n\014createBruger\022\023.GRPC.bruger.B" +
-      "ruger\032\033.GRPC.bruger.BrugerResponse\022<\n\tge",
-      "tBruger\022\032.GRPC.bruger.BrugerRequest\032\023.GR" +
-      "PC.bruger.Bruger\022D\n\013handleAktie\022\031.GRPC.b" +
-      "ruger.AktieRequest\032\032.GRPC.bruger.AktieRe" +
-      "sponse\022F\n\013loginBruger\022\032.GRPC.bruger.Brug" +
-      "erRequest\032\033.GRPC.bruger.BrugerResponse\0226" +
-      "\n\010getAktie\022\026.GRPC.bruger.AktieName\032\022.GRP" +
-      "C.bruger.Aktie\022;\n\006getAll\022\031.GRPC.bruger.g" +
-      "etAllAktier\032\026.GRPC.bruger.allAktier\022G\n\014h" +
-      "andleBruger\022\032.GRPC.bruger.BrugerRequest\032" +
-      "\033.GRPC.bruger.BrugerResponse\022G\n\rgetAllDe",
-      "poter\022\032.GRPC.bruger.getDepotFraID\032\032.GRPC" +
-      ".bruger.DepotResponseB\002P\001b\006proto3"
+      "\t\022\r\n\005antal\030\003 \001(\005\022\014\n\004pris\030\004 \001(\001\"f\n\013Transa" +
+      "ction\022\025\n\rtransaktionID\030\001 \001(\005\022\020\n\010username" +
+      "\030\002 \001(\t\022\021\n\taktienavn\030\003 \001(\t\022\r\n\005antal\030\004 \001(\005",
+      "\022\014\n\004date\030\005 \001(\003\"B\n\017AllTransactions\022/\n\rtra" +
+      "nsaktioner\030\001 \003(\0132\030.GRPC.bruger.Transacti" +
+      "on\"&\n\022TransactionRequest\022\020\n\010username\030\001 \001" +
+      "(\t2\371\004\n\rBrugerService\022@\n\014createBruger\022\023.G" +
+      "RPC.bruger.Bruger\032\033.GRPC.bruger.BrugerRe" +
+      "sponse\022<\n\tgetBruger\022\032.GRPC.bruger.Bruger" +
+      "Request\032\023.GRPC.bruger.Bruger\022D\n\013handleAk" +
+      "tie\022\031.GRPC.bruger.AktieRequest\032\032.GRPC.br" +
+      "uger.AktieResponse\022F\n\013loginBruger\022\032.GRPC" +
+      ".bruger.BrugerRequest\032\033.GRPC.bruger.Brug",
+      "erResponse\0226\n\010getAktie\022\026.GRPC.bruger.Akt" +
+      "ieName\032\022.GRPC.bruger.Aktie\022;\n\006getAll\022\031.G" +
+      "RPC.bruger.getAllAktier\032\026.GRPC.bruger.al" +
+      "lAktier\022G\n\014handleBruger\022\032.GRPC.bruger.Br" +
+      "ugerRequest\032\033.GRPC.bruger.BrugerResponse" +
+      "\022G\n\rgetAllDepoter\022\032.GRPC.bruger.getDepot" +
+      "FraID\032\032.GRPC.bruger.DepotResponse\022S\n\022get" +
+      "AllTransactions\022\037.GRPC.bruger.Transactio" +
+      "nRequest\032\034.GRPC.bruger.AllTransactionsB\002" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -200,6 +223,24 @@ public final class BrugerServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GRPC_bruger_Depot_descriptor,
         new java.lang.String[] { "Id", "Aktienavn", "Antal", "Pris", });
+    internal_static_GRPC_bruger_Transaction_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_GRPC_bruger_Transaction_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_Transaction_descriptor,
+        new java.lang.String[] { "TransaktionID", "Username", "Aktienavn", "Antal", "Date", });
+    internal_static_GRPC_bruger_AllTransactions_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_GRPC_bruger_AllTransactions_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_AllTransactions_descriptor,
+        new java.lang.String[] { "Transaktioner", });
+    internal_static_GRPC_bruger_TransactionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_GRPC_bruger_TransactionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GRPC_bruger_TransactionRequest_descriptor,
+        new java.lang.String[] { "Username", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

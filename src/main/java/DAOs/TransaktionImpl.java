@@ -25,17 +25,18 @@ public class TransaktionImpl implements TransaktionDAO {
     }
 
 
-    private static Transaktion createTransaktionDTO(int transaktionsID, String username, String aktieNavn, int antal, java.sql.Date date){
+    private static Transaktion createTransaktionDTO(int transaktionsID, String username, String aktieNavn, int antal, java.sql.Date date) {
 
-      Transaktion transaktion = new Transaktion();
-      transaktion.setTransaktionsID(transaktionsID);
-      transaktion.setUsername(username);
-      transaktion.setAktienavn(aktieNavn);
-      transaktion.setAntal(antal);
-      transaktion.setDate(date);
+        Transaktion transaktion = new Transaktion();
+        transaktion.setTransaktionsID(transaktionsID);
+        transaktion.setUsername(username);
+        transaktion.setAktienavn(aktieNavn);
+        transaktion.setAntal(antal);
+        transaktion.setDate(date);
 
-      return transaktion;
+        return transaktion;
     }
+
     private static class mapTransaktion implements DataMapper<Transaktion> {
         public Transaktion create(ResultSet rs) throws SQLException {
             int transaktionsID = rs.getInt("transaktionsID");
@@ -45,14 +46,14 @@ public class TransaktionImpl implements TransaktionDAO {
             java.sql.Date date = rs.getDate("date");
 
 
-            return createTransaktionDTO(transaktionsID,username,aktieNavn,antal,date);
+            return createTransaktionDTO(transaktionsID, username, aktieNavn, antal, date);
         }
     }
 
 
     @Override
     public List<Transaktion> getAllTransaktioner() {
-        return db.map(new mapTransaktion(),"SELECT * FROM sydnet.transaktion");
+        return db.map(new mapTransaktion(), "SELECT * FROM sydnet.transaktion");
     }
 
     @Override
@@ -78,6 +79,6 @@ public class TransaktionImpl implements TransaktionDAO {
 
     @Override
     public void reset(String username) {
-       db.executeUpdate("DELETE FROM sydnet.transaktion WHERE username = ?", username);
+        db.executeUpdate("DELETE FROM sydnet.transaktion WHERE username = ?", username);
     }
 }

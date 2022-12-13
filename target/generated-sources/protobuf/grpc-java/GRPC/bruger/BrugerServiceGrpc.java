@@ -123,6 +123,18 @@ public final class BrugerServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               GRPC.bruger.DepotResponse.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<GRPC.bruger.TransactionRequest,
+      GRPC.bruger.AllTransactions> METHOD_GET_ALL_TRANSACTIONS =
+      io.grpc.MethodDescriptor.<GRPC.bruger.TransactionRequest, GRPC.bruger.AllTransactions>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "GRPC.bruger.BrugerService", "getAllTransactions"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.TransactionRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              GRPC.bruger.AllTransactions.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -207,6 +219,13 @@ public final class BrugerServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_GET_ALL_DEPOTER, responseObserver);
     }
 
+    /**
+     */
+    public void getAllTransactions(GRPC.bruger.TransactionRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.AllTransactions> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_ALL_TRANSACTIONS, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -265,6 +284,13 @@ public final class BrugerServiceGrpc {
                 GRPC.bruger.getDepotFraID,
                 GRPC.bruger.DepotResponse>(
                   this, METHODID_GET_ALL_DEPOTER)))
+          .addMethod(
+            METHOD_GET_ALL_TRANSACTIONS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                GRPC.bruger.TransactionRequest,
+                GRPC.bruger.AllTransactions>(
+                  this, METHODID_GET_ALL_TRANSACTIONS)))
           .build();
     }
   }
@@ -350,6 +376,14 @@ public final class BrugerServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_ALL_DEPOTER, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getAllTransactions(GRPC.bruger.TransactionRequest request,
+        io.grpc.stub.StreamObserver<GRPC.bruger.AllTransactions> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_ALL_TRANSACTIONS, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -424,6 +458,13 @@ public final class BrugerServiceGrpc {
     public GRPC.bruger.DepotResponse getAllDepoter(GRPC.bruger.getDepotFraID request) {
       return blockingUnaryCall(
           getChannel(), METHOD_GET_ALL_DEPOTER, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GRPC.bruger.AllTransactions getAllTransactions(GRPC.bruger.TransactionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_ALL_TRANSACTIONS, getCallOptions(), request);
     }
   }
 
@@ -508,6 +549,14 @@ public final class BrugerServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_GET_ALL_DEPOTER, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GRPC.bruger.AllTransactions> getAllTransactions(
+        GRPC.bruger.TransactionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_ALL_TRANSACTIONS, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_BRUGER = 0;
@@ -518,6 +567,7 @@ public final class BrugerServiceGrpc {
   private static final int METHODID_GET_ALL = 5;
   private static final int METHODID_HANDLE_BRUGER = 6;
   private static final int METHODID_GET_ALL_DEPOTER = 7;
+  private static final int METHODID_GET_ALL_TRANSACTIONS = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -568,6 +618,10 @@ public final class BrugerServiceGrpc {
           serviceImpl.getAllDepoter((GRPC.bruger.getDepotFraID) request,
               (io.grpc.stub.StreamObserver<GRPC.bruger.DepotResponse>) responseObserver);
           break;
+        case METHODID_GET_ALL_TRANSACTIONS:
+          serviceImpl.getAllTransactions((GRPC.bruger.TransactionRequest) request,
+              (io.grpc.stub.StreamObserver<GRPC.bruger.AllTransactions>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -609,6 +663,7 @@ public final class BrugerServiceGrpc {
               .addMethod(METHOD_GET_ALL)
               .addMethod(METHOD_HANDLE_BRUGER)
               .addMethod(METHOD_GET_ALL_DEPOTER)
+              .addMethod(METHOD_GET_ALL_TRANSACTIONS)
               .build();
         }
       }
