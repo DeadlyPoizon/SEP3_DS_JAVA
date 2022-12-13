@@ -12,13 +12,10 @@ import java.util.List;
 
 public class TransaktionImpl implements TransaktionDAO {
 
-    private final DBHelper<Transaktion> db;
-
     private final static String JDBC_URL = "jdbc:postgresql://surus.db.elephantsql.com:5432/wtwmsyke?currentSchema=sydnet";
-
     private final static String USERNAME = "wtwmsyke";
-
     private final static String PASSWORD = "rV40CIlTHBJQ2PnZ4NTiILx1gb1M5tp4";
+    private final DBHelper<Transaktion> db;
 
     public TransaktionImpl() {
         this.db = new DBHelper<>(JDBC_URL, USERNAME, PASSWORD);
@@ -36,20 +33,6 @@ public class TransaktionImpl implements TransaktionDAO {
 
         return transaktion;
     }
-
-    private static class mapTransaktion implements DataMapper<Transaktion> {
-        public Transaktion create(ResultSet rs) throws SQLException {
-            int transaktionsID = rs.getInt("transaktionsID");
-            String username = rs.getString("username");
-            String aktieNavn = rs.getString("aktieNavn");
-            int antal = rs.getInt("antal");
-            java.sql.Date date = rs.getDate("date");
-
-
-            return createTransaktionDTO(transaktionsID, username, aktieNavn, antal, date);
-        }
-    }
-
 
     @Override
     public List<Transaktion> getAllTransaktioner() {
@@ -80,5 +63,18 @@ public class TransaktionImpl implements TransaktionDAO {
     @Override
     public void reset(String username) {
         db.executeUpdate("DELETE FROM sydnet.transaktion WHERE username = ?", username);
+    }
+
+    private static class mapTransaktion implements DataMapper<Transaktion> {
+        public Transaktion create(ResultSet rs) throws SQLException {
+            int transaktionsID = rs.getInt("transaktionsID");
+            String username = rs.getString("username");
+            String aktieNavn = rs.getString("aktieNavn");
+            int antal = rs.getInt("antal");
+            java.sql.Date date = rs.getDate("date");
+
+
+            return createTransaktionDTO(transaktionsID, username, aktieNavn, antal, date);
+        }
     }
 }

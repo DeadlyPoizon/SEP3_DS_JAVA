@@ -10,13 +10,10 @@ import java.sql.SQLException;
 
 public class BrugerImpl implements BrugerDAO {
 
-    private final DBHelper<Bruger> db;
-
     private final static String JDBC_URL = "jdbc:postgresql://surus.db.elephantsql.com:5432/wtwmsyke?currentSchema=sydnet";
-
     private final static String USERNAME = "wtwmsyke";
-
     private final static String PASSWORD = "rV40CIlTHBJQ2PnZ4NTiILx1gb1M5tp4";
+    private final DBHelper<Bruger> db;
 
     public BrugerImpl() {
         this.db = new DBHelper<>(JDBC_URL, USERNAME, PASSWORD);
@@ -37,18 +34,6 @@ public class BrugerImpl implements BrugerDAO {
     public boolean create(String username, String password, int depotID, double saldo) {
         db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, ?, ?)", username, password, depotID, saldo);
         return true;
-    }
-
-
-    private static class mapBruger implements DataMapper<Bruger> {
-        public Bruger create(ResultSet rs) throws SQLException {
-            String username = rs.getString("username");
-            String password = rs.getString("password");
-            int depotID = rs.getInt("depotID");
-            double saldo = rs.getDouble("saldo");
-
-            return createBrugerDTO(username, password, depotID, saldo);
-        }
     }
 
     @Override
@@ -80,5 +65,16 @@ public class BrugerImpl implements BrugerDAO {
         Bruger temp = db.mapSingle(new mapBruger(), "SELECT * FROM sydnet.bruger WHERE depotid = ?", depotid);
         double tempdouble = temp.getSaldo() + salgspris;
         db.executeUpdate("UPDATE sydnet.bruger set saldo = ? WHERE depotid = ?", tempdouble, depotid);
+    }
+
+    private static class mapBruger implements DataMapper<Bruger> {
+        public Bruger create(ResultSet rs) throws SQLException {
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            int depotID = rs.getInt("depotID");
+            double saldo = rs.getDouble("saldo");
+
+            return createBrugerDTO(username, password, depotID, saldo);
+        }
     }
 }

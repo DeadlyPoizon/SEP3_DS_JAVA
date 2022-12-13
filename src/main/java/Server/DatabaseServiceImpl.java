@@ -6,13 +6,10 @@ import DAOs.BrugerImpl;
 import DAOs.DepotImpl;
 import DAOs.TransaktionImpl;
 import DTOs.Transaktion;
-import GRPC.bruger.Bruger;
 import GRPC.bruger.*;
-import io.grpc.Grpc;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +31,6 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     public void createBruger(Bruger request,
                              StreamObserver<BrugerResponse> responseObserver) {
         boolean responsebool;
-        System.out.println("yoooooooo");
         System.out.println(request.getUsername());
         if (brugerDAO.create(request.getUsername(), request.getPassword(), request.getDepotID(), request.getSaldo())) {
             System.out.println("Created");
@@ -197,40 +193,4 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     }
 
 }
-
-/* @Override
-   public void getUser(Bruger request,
-                        StreamObserver<Bruger> responseObserver) {
-      try{
-          String User = request.getUsername();
-
-
-                  Bruger response = Bruger.newBuilder().setUsername(User).build();
-
-     responseObserver.onNext(response);
-     responseObserver.onCompleted();
-      } catch (Exception e) {
-          throw new RuntimeException(e);
-      }
-
-
-    }
-
- */
-
-    /*@Override
-    public void createUser(Bruger bruger, StreamObserver<Bruger> responseObserver) {
-        try{
-
-
-            Bruger response = Bruger.newBuilder().setUsername("Jens").setPassword("Herskab69").setDepotID(1).setSaldo(69).build();
-
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-*/
 

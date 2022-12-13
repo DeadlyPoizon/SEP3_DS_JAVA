@@ -11,6 +11,7 @@ public class DatabaseServer {
                 .addService(new DatabaseServiceImpl())
                 .build();
         server.start();
+        System.out.println("Dataserveren starter");
         server.awaitTermination();
     }
 }

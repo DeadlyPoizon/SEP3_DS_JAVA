@@ -1,6 +1,5 @@
 package DAOs.Interfaces;
 
-import DTOs.Aktie;
 import DTOs.Depot;
 
 import java.util.List;

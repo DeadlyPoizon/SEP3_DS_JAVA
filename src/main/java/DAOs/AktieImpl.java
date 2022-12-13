@@ -11,13 +11,10 @@ import java.util.List;
 
 public class AktieImpl implements AktieDAO {
 
-    private final DBHelper<Aktie> db;
-
     private final static String JDBC_URL = "jdbc:postgresql://surus.db.elephantsql.com:5432/wtwmsyke?currentSchema=sydnet";
-
     private final static String USERNAME = "wtwmsyke";
-
     private final static String PASSWORD = "rV40CIlTHBJQ2PnZ4NTiILx1gb1M5tp4";
+    private final DBHelper<Aktie> db;
 
     public AktieImpl() {
         this.db = new DBHelper<>(JDBC_URL, USERNAME, PASSWORD);
@@ -40,20 +37,6 @@ public class AktieImpl implements AktieDAO {
         return db.map(new AktieImpl.mapAktie(), "SELECT * FROM sydnet.aktie");
     }
 
-    private static class mapAktie implements DataMapper<Aktie> {
-        public Aktie create(ResultSet rs) throws SQLException {
-            String navn = rs.getString("navn");
-            double pris = rs.getDouble("pris");
-            String firma = rs.getString("firma");
-            double high = rs.getDouble("high");
-            double low = rs.getDouble("low");
-
-
-            return createAktieDTO(navn, pris, firma, high, low);
-        }
-    }
-
-
     @Override
     public Aktie getAktie(String navn) {
         return db.mapSingle(new AktieImpl.mapAktie(), "SELECT * FROM sydnet.aktie WHERE navn = ?", navn);
@@ -69,6 +52,19 @@ public class AktieImpl implements AktieDAO {
     public boolean updateAktie(String navn, double pris, double high, double low) {
         db.executeUpdate("UPDATE sydnet.aktie SET pris = ?, high = ?, low = ? WHERE navn = ?", pris, high, low, navn);
         return true;
+    }
+
+    private static class mapAktie implements DataMapper<Aktie> {
+        public Aktie create(ResultSet rs) throws SQLException {
+            String navn = rs.getString("navn");
+            double pris = rs.getDouble("pris");
+            String firma = rs.getString("firma");
+            double high = rs.getDouble("high");
+            double low = rs.getDouble("low");
+
+
+            return createAktieDTO(navn, pris, firma, high, low);
+        }
     }
 
 }

@@ -1,7 +1,6 @@
 package DAOs;
 
 import DAOs.Interfaces.DepotDAO;
-import DTOs.Aktie;
 import DTOs.Depot;
 import db.DBHelper;
 import db.DataMapper;
@@ -12,13 +11,10 @@ import java.util.List;
 
 public class DepotImpl implements DepotDAO {
 
-    private final DBHelper<Depot> db;
-
     private final static String JDBC_URL = "jdbc:postgresql://surus.db.elephantsql.com:5432/wtwmsyke?currentSchema=sydnet";
-
     private final static String USERNAME = "wtwmsyke";
-
     private final static String PASSWORD = "rV40CIlTHBJQ2PnZ4NTiILx1gb1M5tp4";
+    private final DBHelper<Depot> db;
 
     public DepotImpl() {
         this.db = new DBHelper<>(JDBC_URL, USERNAME, PASSWORD);
@@ -34,19 +30,6 @@ public class DepotImpl implements DepotDAO {
         depot.setKøbspris(købspris);
         return depot;
     }
-
-    private static class mapDepot implements DataMapper<Depot> {
-        public Depot create(ResultSet rs) throws SQLException {
-            int id = rs.getInt("id");
-            String aktieNavn = rs.getString("aktieNavn");
-            int antal = rs.getInt("antal");
-            double købspris = rs.getDouble("købspris");
-
-
-            return createDepotDTO(id, aktieNavn, antal, købspris);
-        }
-    }
-
 
     @Override
     public Depot getDepot(int depotID) {
@@ -79,5 +62,17 @@ public class DepotImpl implements DepotDAO {
     @Override
     public List<Depot> getAll(int depotID) {
         return db.map(new DepotImpl.mapDepot(), "SELECT * FROM sydnet.depot WHERE id = ?", depotID);
+    }
+
+    private static class mapDepot implements DataMapper<Depot> {
+        public Depot create(ResultSet rs) throws SQLException {
+            int id = rs.getInt("id");
+            String aktieNavn = rs.getString("aktieNavn");
+            int antal = rs.getInt("antal");
+            double købspris = rs.getDouble("købspris");
+
+
+            return createDepotDTO(id, aktieNavn, antal, købspris);
+        }
     }
 }
