@@ -65,7 +65,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
     public void handleAktie(AktieRequest request, StreamObserver<AktieResponse> streamObserver) {
         if (request.getParam().equals("buy")) {
             System.out.println("Buying");
-            double købspris = aktieDAO.getAktie(request.getAktie(0).getNavn()).getHigh();
+            double købspris = aktieDAO.getAktie(request.getAktie(0).getNavn()).getPris();
             depotDAO.createDepotEntry(request.getDepotID(), request.getAktie(0).getNavn(), request.getAntal(), købspris);
             transDAO.createTransaktion(request.getDepotID(), brugerDAO.getUser(request.getDepotID()), request.getAktie(0).getNavn(), request.getAntal(), new Date(System.currentTimeMillis()));
             brugerDAO.buyAktie(købspris, request.getDepotID());

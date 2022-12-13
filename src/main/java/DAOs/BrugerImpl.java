@@ -32,7 +32,7 @@ public class BrugerImpl implements BrugerDAO {
 
     @Override
     public boolean create(String username, String password, int depotID, double saldo) {
-        db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, ?, ?)", username, password, depotID, saldo);
+        db.executeUpdate("INSERT INTO sydnet.bruger VALUES (?, ?, DEFAULT, ?)", username, password, saldo);
         return true;
     }
 
