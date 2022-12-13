@@ -14,7 +14,7 @@ public  final class Transaction extends
   private Transaction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  public Transaction() {
+  private Transaction() {
     transaktionID_ = 0;
     username_ = "";
     aktienavn_ = "";

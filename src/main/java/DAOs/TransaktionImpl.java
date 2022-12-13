@@ -67,11 +67,11 @@ public class TransaktionImpl implements TransaktionDAO {
 
     private static class mapTransaktion implements DataMapper<Transaktion> {
         public Transaktion create(ResultSet rs) throws SQLException {
-            int transaktionsID = rs.getInt("transaktionsID");
+            int transaktionsID = rs.getInt("transaktionID");
             String username = rs.getString("username");
-            String aktieNavn = rs.getString("aktieNavn");
+            String aktieNavn = rs.getString("aktienavn");
             int antal = rs.getInt("antal");
-            java.sql.Date date = rs.getDate("date");
+            java.sql.Date date = rs.getDate("dato");
 
 
             return createTransaktionDTO(transaktionsID, username, aktieNavn, antal, date);
