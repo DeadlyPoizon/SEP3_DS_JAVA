@@ -68,7 +68,7 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
             double købspris = aktieDAO.getAktie(request.getAktie(0).getNavn()).getPris();
             depotDAO.createDepotEntry(request.getDepotID(), request.getAktie(0).getNavn(), request.getAntal(), købspris);
             transDAO.createTransaktion(request.getDepotID(), brugerDAO.getUser(request.getDepotID()), request.getAktie(0).getNavn(), request.getAntal(), new Date(System.currentTimeMillis()));
-            brugerDAO.buyAktie(købspris, request.getDepotID());
+            brugerDAO.buyAktie(købspris*request.getAntal(), request.getDepotID());
 
             AktieResponse aktieResponse = AktieResponse.newBuilder()
                     .setResponse(request.getAntal() + " " + request.getAktie(0).getFirma() + " aktier købt til pris: " + købspris)
@@ -77,8 +77,8 @@ public class DatabaseServiceImpl extends BrugerServiceGrpc.BrugerServiceImplBase
             streamObserver.onCompleted();
         } else if (request.getParam().equals("sell")) {
             System.out.println("Selling");
-            double value = aktieDAO.getAktie(request.getAktie(0).getNavn()).getLow();
-            brugerDAO.sellAktie(value, request.getDepotID());
+            double value = aktieDAO.getAktie(request.getAktie(0).getNavn()).getPris();
+            brugerDAO.sellAktie(value*request.getAntal(), request.getDepotID());
             depotDAO.removeDepotEntry(request.getDepotID(), request.getAktie(0).getNavn(), request.getAntal());
             transDAO.createTransaktion(request.getDepotID(), brugerDAO.getUser(request.getDepotID()), request.getAktie(0).getNavn(), request.getAntal(), new Date(System.currentTimeMillis()));
             AktieResponse aktieResponse = AktieResponse.newBuilder()
